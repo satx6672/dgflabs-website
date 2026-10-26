@@ -3,189 +3,230 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DGF Labs | Enterprise Edge Proxy & DLP</title>
+  <title>DGF Labs | DGF Middleware Edge Proxy</title>
   <style>
     :root {
-      --bg-dark: #0d121c;
-      --bg-card: #1a2235;
-      --text-main: #e2e8f0;
+      --bg-base: #0f172a; /* Slate 900 */
+      --bg-surface: #1e293b; /* Slate 800 */
+      --text-main: #f8fafc;
       --text-muted: #94a3b8;
+      --accent-emerald: #10b981;
+      --accent-emerald-glow: rgba(16, 185, 129, 0.25);
       --accent-blue: #3b82f6;
-      --accent-green: #34d399;
-      --border: #2a3441;
+      --border-color: #334155;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     }
+
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--bg-dark);
+      background-color: var(--bg-base);
       color: var(--text-main);
       line-height: 1.6;
+      overflow-x: hidden;
     }
+
     header {
       padding: 24px 48px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid var(--border-color);
+      background-color: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
+
     .logo {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 700;
-      color: var(--text-main);
+      letter-spacing: 0.05em;
       display: flex;
       align-items: center;
       gap: 12px;
     }
-    .logo span { color: var(--accent-blue); }
-    .nav-btn {
-      background-color: var(--accent-blue);
-      color: white;
-      padding: 10px 20px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 14px;
-      transition: background 0.2s ease;
+
+    .badge-pro {
+      font-size: 10px;
+      font-weight: 700;
+      color: #60a5fa;
+      border: 1px solid #3b82f6;
+      background-color: rgba(59, 130, 246, 0.1);
+      padding: 2px 8px;
+      border-radius: 12px;
+      letter-spacing: 0.1em;
     }
-    .nav-btn:hover { background-color: #2563eb; }
-    
+
     .hero {
-      max-width: 900px;
-      margin: 80px auto;
+      max-width: 1000px;
+      margin: 80px auto 40px;
       text-align: center;
       padding: 0 24px;
     }
-    .hero-badge {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--accent-green);
-      border: 1px solid #059669;
-      padding: 4px 12px;
-      border-radius: 12px;
-      background-color: rgba(16, 185, 129, 0.05);
-      letter-spacing: 0.1em;
-      margin-bottom: 24px;
-    }
+
     .hero h1 {
-      font-size: 48px;
-      line-height: 1.2;
+      font-size: 52px;
+      line-height: 1.1;
       margin: 0 0 24px 0;
+      letter-spacing: -0.02em;
     }
+
     .hero p {
       font-size: 20px;
       color: var(--text-muted);
-      margin: 0 0 40px 0;
-    }
-    
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      max-width: 1000px;
-      margin: 0 auto 80px auto;
-      padding: 0 24px;
-    }
-    .stat-card {
-      background-color: var(--bg-card);
-      border: 1px solid var(--border);
-      color: #059669;
-      padding: 32px;
-      border-radius: 8px;
-      text-align: center;
-    }
-    .stat-value {
-      font-size: 36px;
-      font-weight: 700;
-      color: var(--accent-green);
-      font-family: ui-monospace, monospace;
-      margin-bottom: 8px;
-    }
-    .stat-label {
-      font-size: 14px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+      margin: 0 auto 40px auto;
+      max-width: 600px;
     }
 
-    .features {
+    /* Pulse Animation for Primary CTA */
+    @keyframes ctaPulse {
+      0% { box-shadow: 0 0 0 0 var(--accent-emerald-glow); }
+      70% { box-shadow: 0 0 0 16px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+
+    .btn-primary {
+      background-color: var(--accent-emerald);
+      color: #022c22;
+      padding: 16px 32px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 16px;
+      display: inline-block;
+      transition: all 0.2s ease;
+      animation: ctaPulse 2.5s infinite;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      background-color: #34d399;
+    }
+
+    .terminal-window {
+      max-width: 800px;
+      margin: 60px auto;
+      background-color: #020617;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
+    }
+
+    .terminal-header {
+      background-color: var(--bg-surface);
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+      align-items: center;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .dot-red { background-color: #ef4444; }
+    .dot-yellow { background-color: #f59e0b; }
+    .dot-green { background-color: #10b981; }
+
+    .terminal-body {
+      padding: 24px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--text-muted);
+      text-align: left;
+    }
+
+    .log-time { color: #64748b; }
+    .log-threat { color: #f8fafc; }
+    .log-action { color: var(--accent-emerald); font-weight: 600; }
+
+    .grid-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
       max-width: 1000px;
-      margin: 0 auto 80px auto;
+      margin: 80px auto;
       padding: 0 24px;
     }
-    .feature-row {
-      display: flex;
-      align-items: center;
-      gap: 60px;
-      margin-bottom: 60px;
-    }
-    .feature-text { flex: 1; }
-    .feature-text h3 {
-      font-size: 24px;
-      color: var(--accent-blue);
-      margin-bottom: 16px;
-    }
-    .feature-visual {
-      flex: 1;
-      background-color: #050505;
-      border: 1px solid var(--border);
+
+    .feature-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      padding: 32px;
       border-radius: 8px;
-      padding: 24px;
-      font-family: ui-monospace, monospace;
-      font-size: 12px;
-      color: #059669;
     }
-    .terminal-line { margin-bottom: 8px; opacity: 0.8; }
-    .terminal-highlight { color: #f43f5e; }
+
+    .feature-card h3 {
+      margin: 0 0 12px 0;
+      color: var(--text-main);
+      font-size: 18px;
+    }
+
+    .feature-card p {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
 
   <header>
-    <div class="logo">⚙️ DGF <span>Labs</span></div>
-    <a href="mailto:enterprise@dgflabs.com" class="nav-btn">Request Enterprise Demo</a>
+    <div class="logo">⚙️ DGF Middleware <span class="badge-pro">v1.0.0</span></div>
+    <a href="https://chrome.google.com/webstore/..." class="btn-primary" style="padding: 10px 20px; font-size: 14px; animation: none;">Add to Chrome</a>
   </header>
 
   <div class="hero">
-    <div class="hero-badge">ENTERPRISE ENDPOINT SECURITY</div>
-    <h1>Corporate Footprint Obfuscation at the Browser Edge.</h1>
-    <p>Stop silent intelligence exfiltration before it hits your network. DGF Middleware neutralizes telemetry payloads locally, saving bandwidth, reducing firewall compute, and securing your corporate behavioral data.</p>
-    <a href="mailto:enterprise@dgflabs.com" class="nav-btn" style="padding: 16px 32px; font-size: 16px;">Deploy to 10,000 Seats Instantly</a>
+    <h1>Zero-Profile Privacy at the Browser Edge.</h1>
+    <p>A local-first security proxy that shreds anti-adblock modals, drops telemetry payloads, and rotates your identity footprint every 4 hours.</p>
+    <a href="https://chrome.google.com/webstore/..." class="btn-primary">Install DGF Middleware — Free</a>
   </div>
 
-  <div class="stats-grid">
-    <div class="stat-card">
-      <div class="stat-value">140M+</div>
-      <div class="stat-label">Payloads Dropped / Mo*</div>
+  <div class="terminal-window">
+    <div class="terminal-header">
+      <div class="dot dot-red"></div>
+      <div class="dot dot-yellow"></div>
+      <div class="dot dot-green"></div>
+      <span style="margin-left: 12px;">dgf-edge-audit.log</span>
     </div>
-    <div class="stat-card">
-      <div class="stat-value">2.1 TB</div>
-      <div class="stat-label">Bandwidth Saved / Mo*</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-value">Zero</div>
-      <div class="stat-label">Workflow Disruptions</div>
-    </div>
-  </div>
-
-  <div class="features">
-    <div class="feature-row">
-      <div class="feature-text">
-        <h3>Plug-and-Play Extension Middleware</h3>
-        <p>Traditional endpoint security requires heavy OS-level agents, system reboots, and months of phased rollouts. DGF Middleware deploys instantly as a lightweight browser extension. Push it to 10,000 global endpoints in three clicks via Google Workspace or Microsoft Intune—zero friction, zero hardware conflicts, and zero helpdesk tickets.</p>
-      </div>
-      <div class="feature-visual">
-        <div class="terminal-line">[SYSTEM] Fetching Enterprise Policy...</div>
-        <div class="terminal-line" style="color: var(--accent-blue);">[INFO] 10,000 Seats Provisioned</div>
-        <div class="terminal-line">[STATUS] Engine Active. No reboot required.</div>
-        <div class="terminal-line terminal-highlight">[THREAT] Neutralizing telemetry at the Edge.</div>
-      </div>
+    <div class="terminal-body">
+      <div><span class="log-time">[10:12:46Z]</span> <span class="log-threat">THREAT VECTOR: https://securepubads.g.doubleclick.net/tag/js/gpt.js</span></div>
+      <div><span class="log-time">[10:12:46Z]</span> HARMONICS ENGINE: Normalizing threat to Class1_DataExfiltration</div>
+      <div style="margin-bottom: 16px;"><span class="log-time">[10:12:46Z]</span> <span class="log-action">ACTION TAKEN: Rule ID #3 Matched. Payload Dropped. Applying Dampening Coeff: 0.85.</span></div>
+      
+      <div><span class="log-time">[10:13:25Z]</span> <span class="log-threat">DOM MUTATION: Anti-Adblock Modal Detected (Forbes)</span></div>
+      <div><span class="log-time">[10:13:25Z]</span> DEFUSER ENGINE: Intercepting fixed-position overlay and restoring overflow.</div>
+      <div><span class="log-time">[10:13:25Z]</span> <span class="log-action">ACTION TAKEN: Modal stripped. Viewport scrolling restored.</span></div>
     </div>
   </div>
 
-  <div style="text-align: center; color: var(--text-muted); font-size: 12px; padding: 40px;">
-    *Metrics based on average monthly traffic of 1,000 corporate seats.<br>
-    © 2026 DGF Labs. All rights reserved.
+  <div class="grid-features">
+    <div class="feature-card">
+      <h3>Identity Continuity Rotation</h3>
+      <p>Automated 4-hour cryptographic session rollover prevents longitudinal profiling by rotating your active tokens in the background.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Weaponized DOM Defuser</h3>
+      <p>Spoofs canary bait elements, intercepts dynamic script injections, and silently shreds anti-adblock paywalls without breaking site layouts.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Local-First Architecture</h3>
+      <p>Powered by Manifest V3 declarativeNetRequest. Interceptions happen directly at the edge, requiring zero cloud compute to drop trackers.</p>
+    </div>
+  </div>
+
+  <div style="text-align: center; color: var(--text-muted); font-size: 12px; padding: 60px 24px; border-top: 1px solid var(--border-color);">
+    © 2026 DGF Labs. Independent security research and digital governance.<br>
+    <a href="#" style="color: var(--text-muted);">Privacy Policy</a> | <a href="#" style="color: var(--text-muted);">Pro Upgrade ($19.99)</a>
   </div>
 
 </body>
