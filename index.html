@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DGF Labs | DGF Middleware Edge Proxy</title>
+  <title>DGF Labs | Independent Software Studio</title>
   <style>
     :root {
+      /* Studio & Middleware Theme (Dark) */
       --bg-base: #0f172a; /* Slate 900 */
       --bg-surface: #1e293b; /* Slate 800 */
       --text-main: #f8fafc;
@@ -14,6 +15,15 @@
       --accent-emerald-glow: rgba(16, 185, 129, 0.25);
       --accent-blue: #3b82f6;
       --border-color: #334155;
+      
+      /* PetOS Theme (Light) */
+      --petos-bg: #f0fdf4; /* Green 50 */
+      --petos-surface: #ffffff;
+      --petos-text: #064e3b; /* Emerald 900 */
+      --petos-text-muted: #047857; /* Emerald 600 */
+      --petos-accent: #059669; /* Emerald 500 */
+      --petos-border: #d1fae5; /* Green 100 */
+      
       --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     }
 
@@ -26,6 +36,7 @@
       overflow-x: hidden;
     }
 
+    /* Global Header */
     header {
       padding: 24px 48px;
       display: flex;
@@ -40,53 +51,56 @@
     }
 
     .logo {
-      font-size: 18px;
-      font-weight: 700;
+      font-size: 20px;
+      font-weight: 800;
       letter-spacing: 0.05em;
       display: flex;
       align-items: center;
       gap: 12px;
+      color: var(--text-main);
+      text-decoration: none;
     }
 
-    .badge-pro {
-      font-size: 10px;
-      font-weight: 700;
-      color: #60a5fa;
-      border: 1px solid #3b82f6;
-      background-color: rgba(59, 130, 246, 0.1);
-      padding: 2px 8px;
-      border-radius: 12px;
-      letter-spacing: 0.1em;
+    .nav-links {
+      display: flex;
+      gap: 24px;
     }
 
-    .hero {
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
+
+    /* Studio Hero */
+    .studio-hero {
       max-width: 1000px;
-      margin: 80px auto 40px;
+      margin: 100px auto 80px;
       text-align: center;
       padding: 0 24px;
     }
 
-    .hero h1 {
-      font-size: 52px;
+    .studio-hero h1 {
+      font-size: 56px;
       line-height: 1.1;
       margin: 0 0 24px 0;
       letter-spacing: -0.02em;
     }
 
-    .hero p {
-      font-size: 20px;
+    .studio-hero p {
+      font-size: 22px;
       color: var(--text-muted);
       margin: 0 auto 40px auto;
-      max-width: 600px;
+      max-width: 700px;
     }
 
-    /* Pulse Animation for Primary CTA */
-    @keyframes ctaPulse {
-      0% { box-shadow: 0 0 0 0 var(--accent-emerald-glow); }
-      70% { box-shadow: 0 0 0 16px rgba(16, 185, 129, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-    }
-
+    /* Buttons */
     .btn-primary {
       background-color: var(--accent-emerald);
       color: #022c22;
@@ -97,7 +111,6 @@
       font-size: 16px;
       display: inline-block;
       transition: all 0.2s ease;
-      animation: ctaPulse 2.5s infinite;
     }
 
     .btn-primary:hover {
@@ -105,57 +118,126 @@
       background-color: #34d399;
     }
 
-    .terminal-window {
-      max-width: 800px;
-      margin: 60px auto;
-      background-color: #020617;
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--text-main);
       border: 1px solid var(--border-color);
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
+      padding: 16px 32px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      display: inline-block;
+      transition: all 0.2s ease;
     }
-
-    .terminal-header {
+    
+    .btn-secondary:hover {
       background-color: var(--bg-surface);
-      padding: 12px 16px;
-      border-bottom: 1px solid var(--border-color);
-      display: flex;
-      gap: 8px;
-      font-family: var(--font-mono);
+      border-color: var(--text-muted);
+    }
+
+    .btn-petos {
+      background-color: var(--petos-accent);
+      color: #ffffff;
+      padding: 16px 32px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 16px;
+      display: inline-block;
+      transition: all 0.2s ease;
+    }
+
+    .btn-petos:hover {
+      transform: translateY(-2px);
+      background-color: #047857;
+    }
+
+    /* Section Containers */
+    .product-section {
+      padding: 100px 24px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .petos-section {
+      background-color: var(--petos-bg);
+      color: var(--petos-text);
+      border-top: 1px solid var(--petos-border);
+    }
+
+    .section-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .product-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .badge {
       font-size: 12px;
-      color: var(--text-muted);
-      align-items: center;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 12px;
+      letter-spacing: 0.1em;
+      display: inline-block;
+      margin-bottom: 16px;
     }
 
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-    }
-    .dot-red { background-color: #ef4444; }
-    .dot-yellow { background-color: #f59e0b; }
-    .dot-green { background-color: #10b981; }
-
-    .terminal-body {
-      padding: 24px;
-      font-family: var(--font-mono);
-      font-size: 13px;
-      line-height: 1.7;
-      color: var(--text-muted);
-      text-align: left;
+    .badge-middleware {
+      color: #60a5fa;
+      border: 1px solid #3b82f6;
+      background-color: rgba(59, 130, 246, 0.1);
     }
 
-    .log-time { color: #64748b; }
-    .log-threat { color: #f8fafc; }
-    .log-action { color: var(--accent-emerald); font-weight: 600; }
+    .badge-petos {
+      color: var(--petos-accent);
+      border: 1px solid var(--petos-accent);
+      background-color: #d1fae5;
+    }
 
+    .product-header h2 {
+      font-size: 42px;
+      margin: 0 0 16px 0;
+      letter-spacing: -0.02em;
+    }
+
+    .product-header p {
+      font-size: 18px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .petos-section .product-header p {
+      color: var(--petos-text-muted);
+    }
+
+    /* Split Image Grid */
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    .showcase-img {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+    }
+
+    .petos-section .showcase-img {
+      border: 1px solid var(--petos-border);
+      box-shadow: 0 12px 32px rgba(5, 150, 105, 0.1);
+    }
+
+    /* Features Grid */
     .grid-features {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 24px;
-      max-width: 1000px;
-      margin: 80px auto;
-      padding: 0 24px;
     }
 
     .feature-card {
@@ -165,69 +247,225 @@
       border-radius: 8px;
     }
 
+    .petos-section .feature-card {
+      background-color: var(--petos-surface);
+      border: 1px solid var(--petos-border);
+    }
+
     .feature-card h3 {
       margin: 0 0 12px 0;
-      color: var(--text-main);
       font-size: 18px;
     }
 
     .feature-card p {
       margin: 0;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .petos-section .feature-card p {
+      color: var(--petos-text-muted);
+    }
+
+    /* Pricing (Middleware) */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 24px;
+      margin-top: 60px;
+    }
+
+    .pricing-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      padding: 40px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pricing-card.pro {
+      border: 1px solid var(--accent-blue);
+      box-shadow: 0 12px 32px rgba(59, 130, 246, 0.15);
+      position: relative;
+    }
+    
+    .pricing-card.pro::before {
+      content: "RECOMMENDED";
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--accent-blue);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 12px;
+      letter-spacing: 0.1em;
+    }
+
+    .pricing-tier {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .pricing-card.pro .pricing-tier {
+      color: var(--accent-blue);
+    }
+
+    .price {
+      font-size: 48px;
+      font-weight: 700;
+      margin: 12px 0 24px 0;
+      color: var(--text-main);
+    }
+
+    .price span {
+      font-size: 16px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .pricing-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 32px 0;
+      flex-grow: 1;
+    }
+
+    .pricing-features li {
+      margin-bottom: 12px;
+      font-size: 15px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    
+    .pricing-features li::before {
+      content: "✓";
+      color: var(--accent-emerald);
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
       color: var(--text-muted);
       font-size: 14px;
+      padding: 60px 24px;
+      background-color: var(--bg-base);
+    }
+
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <div class="logo">⚙️ DGF Middleware <span class="badge-pro">v1.0.0</span></div>
-    <a href="https://chrome.google.com/webstore/..." class="btn-primary" style="padding: 10px 20px; font-size: 14px; animation: none;">Add to Chrome</a>
+    <a href="#" class="logo">⚙️ DGF Labs</a>
+    <div class="nav-links">
+      <a href="#middleware">Middleware Proxy</a>
+      <a href="#petos">PetOS Tracker</a>
+    </div>
   </header>
 
-  <div class="hero">
-    <h1>Zero-Profile Privacy at the Browser Edge.</h1>
-    <p>A local-first security proxy that shreds anti-adblock modals, drops telemetry payloads, and rotates your identity footprint every 4 hours.</p>
-    <a href="https://chrome.google.com/webstore/..." class="btn-primary">Install DGF Middleware — Free</a>
+  <!-- Studio Hero -->
+  <div class="studio-hero">
+    <h1>Your browser. Your data.<br>Zero compromises.</h1>
+    <p>DGF Labs builds professional-grade, local-first browser extensions. Whether neutralizing aggressive web trackers at the network edge or managing your pet’s health records entirely offline, we guarantee 100% data privacy. No cloud accounts. No tracking pipelines.</p>
   </div>
 
-  <div class="terminal-window">
-    <div class="terminal-header">
-      <div class="dot dot-red"></div>
-      <div class="dot dot-yellow"></div>
-      <div class="dot dot-green"></div>
-      <span style="margin-left: 12px;">dgf-edge-audit.log</span>
-    </div>
-    <div class="terminal-body">
-      <div><span class="log-time">[10:12:46Z]</span> <span class="log-threat">THREAT VECTOR: https://securepubads.g.doubleclick.net/tag/js/gpt.js</span></div>
-      <div><span class="log-time">[10:12:46Z]</span> HARMONICS ENGINE: Normalizing threat to Class1_DataExfiltration</div>
-      <div style="margin-bottom: 16px;"><span class="log-time">[10:12:46Z]</span> <span class="log-action">ACTION TAKEN: Rule ID #3 Matched. Payload Dropped. Applying Dampening Coeff: 0.85.</span></div>
-      
-      <div><span class="log-time">[10:13:25Z]</span> <span class="log-threat">DOM MUTATION: Anti-Adblock Modal Detected (Forbes)</span></div>
-      <div><span class="log-time">[10:13:25Z]</span> DEFUSER ENGINE: Intercepting fixed-position overlay and restoring overflow.</div>
-      <div><span class="log-time">[10:13:25Z]</span> <span class="log-action">ACTION TAKEN: Modal stripped. Viewport scrolling restored.</span></div>
-    </div>
-  </div>
+  <!-- Wing 1: Security & Infrastructure (Middleware) -->
+  <section id="middleware" class="product-section">
+    <div class="section-inner">
+      <div class="product-header">
+        <div class="badge badge-middleware">SECURITY & INFRASTRUCTURE</div>
+        <h2>DGF Middleware Edge Proxy</h2>
+        <p>A Manifest V3 security proxy that shreds anti-adblock modals, drops telemetry payloads, and rotates your identity footprint in the background.</p>
+      </div>
 
-  <div class="grid-features">
-    <div class="feature-card">
-      <h3>Identity Continuity Rotation</h3>
-      <p>Automated 4-hour cryptographic session rollover prevents longitudinal profiling by rotating your active tokens in the background.</p>
-    </div>
-    <div class="feature-card">
-      <h3>Weaponized DOM Defuser</h3>
-      <p>Spoofs canary bait elements, intercepts dynamic script injections, and silently shreds anti-adblock paywalls without breaking site layouts.</p>
-    </div>
-    <div class="feature-card">
-      <h3>Local-First Architecture</h3>
-      <p>Powered by Manifest V3 declarativeNetRequest. Interceptions happen directly at the edge, requiring zero cloud compute to drop trackers.</p>
-    </div>
-  </div>
+      <!-- Middleware Image Assets Showcase -->
+      <div class="showcase-grid">
+        <img src="DGF Labs 1280x800.2.jpeg" alt="Zero-Profile Privacy Forbes Defuser" class="showcase-img">
+        <img src="DGF Labs 1280x800.1.jpg" alt="Live Edge Interception Terminal" class="showcase-img">
+        <img src="DGF Labs 1280x800.3.jpg" alt="Cloud-Tethered Continuity Render Sync" class="showcase-img">
+        <img src="DGF Labs 1280x800.4.jpg" alt="Real-Time Diagnostics Bandwidth" class="showcase-img">
+      </div>
 
-  <div style="text-align: center; color: var(--text-muted); font-size: 12px; padding: 60px 24px; border-top: 1px solid var(--border-color);">
-    © 2026 DGF Labs. Independent security research and digital governance.<br>
-    <a href="#" style="color: var(--text-muted);">Privacy Policy</a> | <a href="#" style="color: var(--text-muted);">Pro Upgrade ($19.99)</a>
-  </div>
+      <div class="grid-features">
+        <div class="feature-card">
+          <h3>Advanced Encapsulation Piercing</h3>
+          <p>Our recursive shredder actively hunts down and neutralizes hidden trackers and anti-adblock modals buried deep inside Shadow DOM components.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Enterprise-Grade Stealth</h3>
+          <p>Maintains secure, authenticated telemetry with our Render backend via cryptographic jitter, avoiding rigid heartbeat intervals.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Zero-Latency Edge Execution</h3>
+          <p>Throttled native mutation observers ensure the DOM shredder operates natively with zero memory leaks. The browser stays blazing fast.</p>
+        </div>
+      </div>
 
-</body>
-</html>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-tier">Normal Mode</div>
+          <div class="price">Free</div>
+          <ul class="pricing-features">
+            <li>Blocks up to 50 active trackers per session</li>
+            <li>Prevents 0.75 MB of data exfiltration</li>
+            <li>Advanced Shadow DOM Piercer</li>
+            <li>Live Telemetry UI Counters</li>
+          </ul>
+          <a href="https://chrome.google.com/webstore/..." class="btn-secondary" style="text-align: center;">Install Extension</a>
+        </div>
+        <div class="pricing-card pro">
+          <div class="pricing-tier">Pro Mode</div>
+          <div class="price">$19.99 <span>/ one-time</span></div>
+          <ul class="pricing-features">
+            <li><strong>Unrestricted</strong> edge filtering & tracker blocking</li>
+            <li><strong>Persistent</strong> live telemetry and data metrics</li>
+            <li>Exclusive Terminal Edge Audit Log</li>
+            <li>Cryptographic continuity handshakes via Render</li>
+          </ul>
+          <a href="https://chrome.google.com/webstore/..." class="btn-primary" style="text-align: center;">Unlock Pro Mode</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wing 2: Personal Data Management (PetOS) -->
+  <section id="petos" class="product-section petos-section">
+    <div class="section-inner">
+      <div class="product-header">
+        <div class="badge badge-petos">PERSONAL DATA MANAGEMENT</div>
+        <h2>PetOS Pet Care Tracker</h2>
+        <p>A lightweight, professional pet management system for vaccines, medications, and vet visits. Fast, reliable, and entirely offline.</p>
+      </div>
+
+      <!-- PetOS Image Assets Showcase -->
+      <div class="showcase-grid">
+        <img src="image_259c18.png" alt="PetOS Medication Tracker Dashboard" class="showcase-img">
+        <img src="image_2594b8.png" alt="PetOS Overdue Vaccine Alerts" class="showcase-img">
+      </div>
+
+      <div class="grid-features">
+        <div class="feature-card">
+          <h3 style="color: var(--petos-text);">Private by Design</h3>
+          <p>Your data stays completely in your browser via secure local Chrome storage. No external servers, no tracking pipelines, and no data sharing.</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="color: var(--petos-text);">Millisecond Compliance Engine</h3>
+          <p>Monitor short-term treatments and long-term preventatives. Overdue tracking automatically migrates items to prominent alerts based on strict temporal windows.</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="color: var(--petos-text);">Dynamic Note Storage</h3>
+          <p>A desktop-inspired virtual folder repository for every pet. The SOAP input framework caches text documents locally, keystroke by keystroke.</p>
+        </div>
