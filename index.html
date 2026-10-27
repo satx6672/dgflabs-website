@@ -270,6 +270,74 @@
       color: var(--petos-text-muted);
     }
 
+    /* Comparison Table */
+    .comparison-section {
+      max-width: 1000px;
+      margin: 80px auto;
+      padding: 0 24px;
+    }
+
+    .comparison-table-wrapper {
+      overflow-x: auto;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 15px;
+      white-space: nowrap;
+    }
+
+    .comparison-table th, 
+    .comparison-table td {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .comparison-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .comparison-table th {
+      font-weight: 700;
+      color: var(--text-main);
+      background-color: rgba(15, 23, 42, 0.5);
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Highlight DGF Column */
+    .comparison-table .col-dgf {
+      background-color: rgba(16, 185, 129, 0.05); /* Subtle emerald tint */
+      border-left: 1px solid var(--accent-emerald);
+      border-right: 1px solid var(--accent-emerald);
+    }
+
+    .comparison-table th.col-dgf {
+      color: var(--accent-emerald);
+      border-top: 3px solid var(--accent-emerald);
+    }
+
+    .comparison-table td.col-dgf {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .comparison-table td.col-dgf .highlight {
+      color: var(--accent-emerald);
+    }
+
+    /* Mute Competitor Columns */
+    .comparison-table .col-comp {
+      color: var(--text-muted);
+    }
+
     /* Pricing (Middleware) */
     .pricing-grid {
       display: grid;
@@ -414,6 +482,63 @@
         <div class="feature-card">
           <h3>Zero-Latency Edge Execution</h3>
           <p>Throttled native mutation observers ensure the DOM shredder operates natively with zero memory leaks. The browser stays blazing fast.</p>
+        </div>
+      </div>
+
+      <div class="comparison-section">
+        <div class="product-header" style="margin-bottom: 40px;">
+          <h2>The Edge Proxy Standard</h2>
+          <p>Why power users are dropping legacy network blockers.</p>
+        </div>
+        <div class="comparison-table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Core Capability</th>
+                <th class="col-dgf">DGF Middleware (Pro)</th>
+                <th class="col-comp">Ghostery Pro</th>
+                <th class="col-comp">AdGuard (Ext)</th>
+                <th class="col-comp">uBlock Origin (MV3)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Monetization Model</strong></td>
+                <td class="col-dgf"><span class="highlight">$19.99 Lifetime</span> (One-time)</td>
+                <td class="col-comp">$4.99 / month</td>
+                <td class="col-comp">$2.49 / month</td>
+                <td class="col-comp">Free</td>
+              </tr>
+              <tr>
+                <td><strong>Extension Architecture</strong></td>
+                <td class="col-dgf"><span class="highlight">Native MV3</span> (Built from scratch)</td>
+                <td class="col-comp">Legacy Patchwork</td>
+                <td class="col-comp">Legacy Patchwork</td>
+                <td class="col-comp">Stripped-down "Lite" build</td>
+              </tr>
+              <tr>
+                <td><strong>Anti-Adblock Defusing</strong></td>
+                <td class="col-dgf"><span class="highlight">Yes</span> (Shadow DOM Piercing)</td>
+                <td class="col-comp">Fails on complex modals</td>
+                <td class="col-comp">Yes (Heavy memory cost)</td>
+                <td class="col-comp">Struggling under MV3 rules</td>
+              </tr>
+              <tr>
+                <td><strong>Edge Audit Logging</strong></td>
+                <td class="col-dgf"><span class="highlight">Yes</span> (Real-Time Terminal UI)</td>
+                <td class="col-comp">Paywalled</td>
+                <td class="col-comp">Static text lists only</td>
+                <td class="col-comp">Static text lists only</td>
+              </tr>
+              <tr>
+                <td><strong>Data Privacy Stance</strong></td>
+                <td class="col-dgf"><span class="highlight">Local-First</span> (Zero cloud tracking)</td>
+                <td class="col-comp">Relies on cloud analytics</td>
+                <td class="col-comp">Relies on cloud telemetry</td>
+                <td class="col-comp">Local-First</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
