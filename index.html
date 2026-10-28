@@ -277,6 +277,91 @@
       color: var(--petos-text-muted);
     }
 
+	/* Pricing (PetOS) */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 24px;
+      margin-top: 60px;
+    }
+
+    .pricing-card {
+      background-color: #f0fdf4;
+      border: 1px solid var(--border-color);
+      padding: 40px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pricing-card.pro {
+      border: 1px solid var(--accent-blue);
+      box-shadow: 0 12px 32px rgba(59, 130, 246, 0.15);
+      position: relative;
+    }
+    
+    .pricing-card.pro::before {
+      content: "RECOMMENDED";
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--accent-blue);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 12px;
+      letter-spacing: 0.1em;
+    }
+
+    .pricing-tier {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .pricing-card.pro .pricing-tier {
+      color: var(--accent-blue);
+    }
+
+    .price {
+      font-size: 48px;
+      font-weight: 700;
+      margin: 12px 0 24px 0;
+      color: var(--text-main);
+    }
+
+    .price span {
+      font-size: 16px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .pricing-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 32px 0;
+      flex-grow: 1;
+    }
+
+    .pricing-features li {
+      margin-bottom: 12px;
+      font-size: 15px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    
+    .pricing-features li::before {
+      content: "✓";
+      color: var(--accent-emerald);
+      font-weight: bold;
+    }
+
     /* Comparison Table */
     .comparison-section {
       max-width: 1000px;
