@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - DGF Labs</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #333; }
+        h1 { color: #111; }
+        h2 { border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-top: 30px; }
+        p, ul { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>DGF Middleware Privacy Policy</h1>
+    <p><strong>Effective Date:</strong> October 29, 2026</p>
+
+    <h2>1. Overview</h2>
+    <p>DGF Labs ("we", "our") operates the DGF Middleware Edge Proxy browser extension. We are committed to local-first security and strict data minimization. This policy explains how our extension handles data.</p>
+
+    <h2>2. Data Collection and Usage</h2>
+    <p>The DGF Middleware operates primarily as a local-first transport layer. To establish cryptographic session continuity, the extension communicates with our proprietary backend servers.</p>
+    <ul>
+        <li><strong>Telemetry and State Data:</strong> The extension generates and routes temporary cryptographic tokens (such as continuity references and action states) to our backend to execute stateful sequential validation.</li>
+        <li><strong>No Behavioral Harvesting:</strong> We do not pool, monetize, or track your personal browsing history, search queries, or identity.</li>
+    </ul>
+
+    <h2>3. Data Storage</h2>
+    <p>Cryptographic session tokens are stored locally on your device using standard Manifest V3 local storage APIs. Server-side provisional states are ephemeral and exist only to validate the immediate cryptographic handshake.</p>
+
+    <h2>4. Third-Party Sharing</h2>
+    <p>We do not sell, rent, or share any data with third-party data brokers, advertising networks, or analytics platforms.</p>
+
+    <h2>5. Contact</h2>
+    <p>For questions regarding this policy or the Digital Governance Framework architecture, please contact us at dgflabs@github.com.</p>
+
+</body>
+</html>
