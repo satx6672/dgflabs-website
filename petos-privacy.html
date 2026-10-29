@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet OS Privacy Policy - DGF Labs</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #333; }
+        h1 { color: #111; }
+        h2 { border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-top: 30px; }
+        p, ul { margin-bottom: 20px; }
+        code { background-color: #f4f4f4; padding: 2px 4px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+    <h1>Privacy Policy for Pet OS</h1>
+    <p><strong>Last Updated:</strong> October 5, 2026</p>
+    <p>At Pet OS, we take the privacy of our users and their pets seriously. This Privacy Policy explicitly details our practices regarding the collection, storage, and handling of data within the Pet OS browser extension.</p>
+
+    <h2>1. Local Data Processing and Storage (Pet Care Data)</h2>
+    <p>All application-related data—including pet names, breed notes, vaccine dates, and medication scheduling logs—is entered exclusively by the user.</p>
+    <ul>
+        <li><strong>Offline Execution:</strong> This data is written directly to and stored within the user's localized browser cache environment via Chrome's secure <code>chrome.storage.local</code> API.</li>
+        <li><strong>Zero External Transfers of Pet Data:</strong> No pet-related records or user logs are ever transmitted across networks or sent to external cloud databases. This information remains entirely isolated on the user’s local computer hard drive.</li>
+        <li><strong>Data Control:</strong> Users retain absolute control over their information. All saved local data rows are automatically vaporized from the device storage the exact millisecond the extension is completely uninstalled from the browser.</li>
+    </ul>
+
+    <h2>2. Optional Premium Licensing and Monetization</h2>
+    <p>To offer optional in-app premium features, Pet OS integrates ExtensionPay as its secure licensing provider.</p>
+    <ul>
+        <li><strong>Network Communication:</strong> The extension uses host permissions to securely connect to <code>https://extensionpay.com*</code> solely to verify your account's premium license activation state.</li>
+        <li><strong>No Local Payment Handling:</strong> Pet OS does not collect, harvest, access, or store payment card numbers, billing addresses, or financial data.</li>
+        <li><strong>Third-Party Payment Processing:</strong> All premium tier checkouts are processed off-site through ExtensionPay’s secure checkout window, which is powered and secured globally by Stripe. Please review Stripe and ExtensionPay’s respective privacy policies for details on financial data handling.</li>
+    </ul>
+
+    <h2>3. Single-Purpose Use of Permissions (Notifications)</h2>
+    <p>Pet OS utilizes internal interface permissions solely to execute its primary utility: helping pet owners adhere to critical healthcare administration schedules.</p>
+    <ul>
+        <li><strong>Notification Justification:</strong> The extension reads locally stored, user-input dates for pet medications and vaccines solely to calculate real-time compliance windows. This data is used strictly to trigger internal visual notification reminders, badge additions, and overdue status logs directly within the extension's user interface workspace.</li>
+    </ul>
+
+    <h2>4. Policy Updates and Contact</h2>
+    <p>We reserve the right to modify this privacy policy text at any time. Any changes will be committed directly to our extension source package updates and our official store listing.</p>
+    <p>For questions, contact us at support@dgflabs.com.</p>
+
+</body>
+</html>
