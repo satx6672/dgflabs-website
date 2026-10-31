@@ -273,91 +273,6 @@
       color: var(--text-muted);
     }
 
-	/* Pricing (PetOS) */
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 24px;
-      margin-top: 60px;
-    }
-
-    .pricing-card {
-      background-color: var(--bg-surface);
-      border: 1px solid var(--border-color);
-      padding: 40px;
-      border-radius: 8px;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .pricing-card.pro {
-      border: 1px solid var(--accent-blue);
-      box-shadow: 0 12px 32px rgba(59, 130, 246, 0.15);
-      position: relative;
-    }
-    
-    .pricing-card.pro::before {
-      content: "RECOMMENDED";
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: var(--accent-blue);
-      color: #fff;
-      font-size: 10px;
-      font-weight: 700;
-      padding: 4px 12px;
-      border-radius: 12px;
-      letter-spacing: 0.1em;
-    }
-
-    .pricing-tier {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .pricing-card.pro .pricing-tier {
-      color: var(--accent-blue);
-    }
-
-    .price {
-      font-size: 48px;
-      font-weight: 700;
-      margin: 12px 0 24px 0;
-      color: var(--text-main);
-    }
-
-    .price span {
-      font-size: 16px;
-      color: var(--text-muted);
-      font-weight: 400;
-    }
-
-    .pricing-features {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 32px 0;
-      flex-grow: 1;
-    }
-
-    .pricing-features li {
-      margin-bottom: 12px;
-      font-size: 15px;
-      color: var(--text-muted);
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-    }
-    
-    .pricing-features li::before {
-      content: "✓";
-      color: var(--accent-emerald);
-      font-weight: bold;
-    }
-
     .petos-section .feature-card p {
       color: var(--petos-text-muted);
     }
@@ -406,7 +321,7 @@
 
     /* Highlight DGF Column */
     .comparison-table .col-dgf {
-      background-color: rgba(16, 185, 129, 0.05); /* Subtle emerald tint */
+      background-color: rgba(16, 185, 129, 0.05);
       border-left: 1px solid var(--accent-emerald);
       border-right: 1px solid var(--accent-emerald);
     }
@@ -527,6 +442,98 @@
       color: var(--text-muted);
       text-decoration: none;
     }
+
+    /* Pro Upgrade Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .modal-content {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 40px;
+      max-width: 420px;
+      width: 90%;
+      position: relative;
+      box-shadow: 0 24px 48px rgba(0,0,0,0.5);
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+    
+    .modal-overlay.active .modal-content {
+      transform: translateY(0);
+    }
+    
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-size: 28px;
+      color: var(--text-muted);
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    
+    .modal-close:hover {
+      color: var(--text-main);
+    }
+    
+    .modal-title {
+      font-size: 24px;
+      margin: 0 0 8px 0;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    
+    .modal-desc {
+      color: var(--text-muted);
+      font-size: 15px;
+      margin: 0 0 24px 0;
+      line-height: 1.5;
+    }
+    
+    .modal-checkout-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background-color: var(--accent-blue);
+      color: #fff;
+      padding: 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 16px;
+      transition: background-color 0.2s;
+      box-sizing: border-box;
+      margin-bottom: 16px;
+    }
+    
+    .modal-checkout-btn:hover {
+      background-color: #2563eb;
+    }
   </style>
 </head>
 <body>
@@ -644,7 +651,7 @@
             <li>Advanced Shadow DOM Piercer</li>
             <li>Live Telemetry UI Counters</li>
           </ul>
-          <a href="https://chromewebstore.google.com/detail/lmndagmoinleoinkhildkjfgbaddlbdm?authuser=0&hl=en" class="btn-secondary" style="text-align: center;">Install Extension</a>
+          <a href="https://chrome.google.com/webstore/..." class="btn-secondary" style="text-align: center;">Install Extension</a>
         </div>
         <div class="pricing-card pro">
           <div class="pricing-tier">Pro Mode</div>
@@ -655,7 +662,7 @@
             <li>Exclusive Terminal Edge Audit Log</li>
             <li>Cryptographic continuity handshakes via Render</li>
           </ul>
-          <a href="https://chromewebstore.google.com/detail/lmndagmoinleoinkhildkjfgbaddlbdm?authuser=0&hl=en" class="btn-primary" style="text-align: center;">Unlock Pro Mode</a>
+          <a href="#" class="btn-primary" style="text-align: center;">Unlock Pro Mode</a>
         </div>
       </div>
     </div>
@@ -701,7 +708,7 @@
             <li>Local Chrome storage</li>
             <li>Several Pro upgrade options available</li>
           </ul>
-          <a href="https://chromewebstore.google.com/detail/cincepimhedmpioadlnbffpnpigeijen?utm_source=item-share-cb" class="btn-secondary" style="text-align: center;">Install Extension</a>
+          <a href="https://chrome.google.com/webstore/..." class="btn-secondary" style="text-align: center;">Install Extension</a>
         </div>
         <div class="pricing-card pro">
           <div class="pricing-tier">Pro Mode</div>
@@ -709,10 +716,10 @@
           <ul class="pricing-features">
             <li><strong>Vaccines, Meds, Vet Visits, Notes</strong> module access</li>
             <li><strong>Add</strong> and manage unlimited pets</li>
-            <li>Bell badge and Meds tab persistent pulse visual alerts</li>
+            <li>Bell badge and Meds tab persisten pulse visual alerts</li>
             <li>Meds and Notes modules job aids, SOAP Notes & desktop-inspired repository</li>
           </ul>
-          <a href="https://chromewebstore.google.com/detail/cincepimhedmpioadlnbffpnpigeijen?authuser=0&hl=en" class="btn-primary" style="text-align: center;">Unlock Pro Mode</a>
+          <a href="https://chrome.google.com/webstore/..." class="btn-petos" style="text-align: center; margin-top: 60px;">Unlock Pro Mode</a>
         </div>
       </div>
     </div>
@@ -721,8 +728,53 @@
   <footer>
     © 2026 DGF Labs. Independent security research and digital governance.<br>
     General: <a href="mailto:info@dgflabs.com">info@dgflabs.com</a> | Commercial: <a href="mailto:sales@dgflabs.com">sales@dgflabs.com</a><br><br>
-    <a href="support.html">Support</a> | <a href="privacy.html">DGF Middleware Privacy</a> | <a href="petos-privacy.html">PetOS Privacy</a> | <a href="license.html">License & Terms</a>
+    <a href="support.html">Support</a> | <a href="privacy.html">DGF Middleware Privacy</a> | <a href="petos-privacy.html">PetOS Privacy</a> | <a href="#">Terms of Service</a>
   </footer>
+
+  <!-- DGF Middleware Pro Modal -->
+  <div id="middleware-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close" id="close-modal">&times;</button>
+      <div class="badge badge-middleware" style="margin-bottom: 12px;">PRO UPGRADE PATH</div>
+      <h3 class="modal-title">How to Unlock Pro Mode</h3>
+      <p class="modal-desc">Pro upgrades are processed securely from within the extension to ensure your license is instantly bound to your browser.</p>
+      
+      <ol style="color: var(--text-muted); font-size: 14px; margin-bottom: 24px; padding-left: 20px; line-height: 1.6;">
+        <li>Install the free DGF Middleware extension.</li>
+        <li>Open the extension popup in your browser.</li>
+        <li>Click the green <strong>Unlock Pro Mode</strong> button to complete the $19.99 checkout.</li>
+      </ol>
+      
+      <!-- Connects directly to the Chrome Web Store -->
+      <a href="https://chrome.google.com/webstore/..." target="_blank" class="modal-checkout-btn">
+        Go to Chrome Web Store
+      </a>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById('middleware-modal');
+    const closeBtn = document.getElementById('close-modal');
+    
+    // Targets specifically the primary button in the Pro pricing card for the Middleware
+    const unlockProBtn = document.querySelector('#middleware .pricing-card.pro .btn-primary');
+
+    unlockProBtn.addEventListener('click', (e) => {
+      e.preventDefault(); 
+      modal.classList.add('active');
+    });
+
+    closeBtn.addEventListener('click', () => {
+      modal.classList.remove('active');
+    });
+
+    // Close when clicking outside the modal box
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+      }
+    });
+  </script>
 
 </body>
 </html>
