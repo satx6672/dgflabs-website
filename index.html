@@ -33,7 +33,6 @@
       --petos-text-muted: #047857; /* Emerald 600 */
       --petos-accent: #059669; /* Emerald 500 */
       --petos-border: #d1fae5; /* Green 100 */
-      --accent-blue: #3b82f6;
       
       --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     }
@@ -431,6 +430,46 @@
       font-weight: bold;
     }
 
+    /* ---- PetOS Pricing Specific Overrides ---- */
+    
+    /* Base PetOS Pricing Card */
+    .petos-section .pricing-card {
+      background-color: var(--petos-surface);
+      border: 1px solid var(--petos-border);
+    }
+
+    /* Fix Text Readability on Light Theme */
+    .petos-section .pricing-card .price {
+      color: var(--petos-text);
+    }
+    
+    .petos-section .pricing-card .price span {
+      color: var(--petos-text-muted);
+    }
+
+    .petos-section .pricing-card .pricing-tier {
+      color: var(--petos-text-muted);
+    }
+
+    .petos-section .pricing-card .pricing-features li {
+      color: var(--petos-text-muted);
+    }
+
+    /* PetOS Pro Card: Neon Green Highlight Tension */
+    .petos-section .pricing-card.pro {
+      border: 1px solid var(--accent-emerald);
+      box-shadow: 0 12px 32px var(--accent-emerald-glow); 
+    }
+
+    .petos-section .pricing-card.pro::before {
+      background-color: var(--accent-emerald);
+      color: #022c22; /* High contrast dark text on the neon green */
+    }
+
+    .petos-section .pricing-card.pro .pricing-tier {
+      color: var(--accent-emerald);
+    }
+
     footer {
       text-align: center;
       color: var(--text-muted);
@@ -444,7 +483,7 @@
       text-decoration: none;
     }
 
-    /* Pro Upgrade Modal */
+    /* Pro Upgrade Modals - Shared Structure */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -534,6 +573,36 @@
     
     .modal-checkout-btn:hover {
       background-color: #2563eb;
+    }
+
+    /* PetOS Modal Specific Styles */
+    .petos-modal-content {
+      background-color: var(--petos-surface);
+      border: 1px solid var(--petos-border);
+    }
+
+    .petos-modal-content .modal-close {
+      color: var(--petos-text-muted);
+    }
+
+    .petos-modal-content .modal-close:hover {
+      color: var(--petos-text);
+    }
+
+    .petos-modal-content .modal-title {
+      color: var(--petos-text);
+    }
+
+    .petos-modal-content .modal-desc {
+      color: var(--petos-text-muted);
+    }
+
+    .petos-checkout-btn {
+      background-color: var(--petos-accent);
+    }
+
+    .petos-checkout-btn:hover {
+      background-color: #047857;
     }
   </style>
 </head>
@@ -720,7 +789,7 @@
             <li>Bell badge and Meds tab persisten pulse visual alerts</li>
             <li>Meds and Notes modules job aids, SOAP Notes & desktop-inspired repository</li>
           </ul>
-          <a href="https://chromewebstore.google.com/detail/cincepimhedmpioadlnbffpnpigeijen?authuser=0&hl=en" class="btn-petos" style="text-align: center; margin-top: 60px;">Unlock Pro Mode</a>
+          <a href="#" class="btn-petos" style="text-align: center; margin-top: 60px;">Unlock Pro Mode</a>
         </div>
       </div>
     </div>
@@ -746,33 +815,70 @@
         <li>Click the green <strong>Unlock Pro Mode</strong> button to complete the $19.99 checkout.</li>
       </ol>
       
-      <!-- Connects directly to the Chrome Web Store -->
       <a href="https://chromewebstore.google.com/detail/lmndagmoinleoinkhildkjfgbaddlbdm?authuser=0&hl=en" target="_blank" class="modal-checkout-btn">
         Go to Chrome Web Store
       </a>
     </div>
   </div>
 
+  <!-- PetOS Pro Modal -->
+  <div id="petos-modal" class="modal-overlay">
+    <div class="modal-content petos-modal-content">
+      <button class="modal-close" id="close-petos-modal">&times;</button>
+      <div class="badge badge-petos" style="margin-bottom: 12px;">PRO UPGRADE PATH</div>
+      <h3 class="modal-title">How to Unlock Pro Mode</h3>
+      <p class="modal-desc">Pro upgrades are processed securely from within the extension to ensure your license is instantly bound to your browser.</p>
+      
+      <ol style="color: var(--petos-text-muted); font-size: 14px; margin-bottom: 24px; padding-left: 20px; line-height: 1.6;">
+        <li>Install the free PetOS Tracker extension.</li>
+        <li>Open the extension popup in your browser.</li>
+        <li>Click the green <strong>Unlock Pro Mode</strong> button to complete the $14.99 checkout.</li>
+      </ol>
+      
+      <a href="https://chromewebstore.google.com/detail/cincepimhedmpioadlnbffpnpigeijen?authuser=0&hl=en" target="_blank" class="modal-checkout-btn petos-checkout-btn">
+        Go to Chrome Web Store
+      </a>
+    </div>
+  </div>
+
   <script>
-    const modal = document.getElementById('middleware-modal');
-    const closeBtn = document.getElementById('close-modal');
-    
-    // Targets specifically the primary button in the Pro pricing card for the Middleware
-    const unlockProBtn = document.querySelector('#middleware .pricing-card.pro .btn-primary');
+    // Middleware Modal Logic
+    const middlewareModal = document.getElementById('middleware-modal');
+    const closeMiddlewareBtn = document.getElementById('close-modal');
+    const unlockMiddlewareBtn = document.querySelector('#middleware .pricing-card.pro .btn-primary');
 
-    unlockProBtn.addEventListener('click', (e) => {
+    unlockMiddlewareBtn.addEventListener('click', (e) => {
       e.preventDefault(); 
-      modal.classList.add('active');
+      middlewareModal.classList.add('active');
     });
 
-    closeBtn.addEventListener('click', () => {
-      modal.classList.remove('active');
+    closeMiddlewareBtn.addEventListener('click', () => {
+      middlewareModal.classList.remove('active');
     });
 
-    // Close when clicking outside the modal box
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.classList.remove('active');
+    middlewareModal.addEventListener('click', (e) => {
+      if (e.target === middlewareModal) {
+        middlewareModal.classList.remove('active');
+      }
+    });
+
+    // PetOS Modal Logic
+    const petosModal = document.getElementById('petos-modal');
+    const closePetosBtn = document.getElementById('close-petos-modal');
+    const unlockPetosBtn = document.querySelector('#petos .pricing-card.pro .btn-petos');
+
+    unlockPetosBtn.addEventListener('click', (e) => {
+      e.preventDefault(); 
+      petosModal.classList.add('active');
+    });
+
+    closePetosBtn.addEventListener('click', () => {
+      petosModal.classList.remove('active');
+    });
+
+    petosModal.addEventListener('click', (e) => {
+      if (e.target === petosModal) {
+        petosModal.classList.remove('active');
       }
     });
   </script>
