@@ -33,7 +33,7 @@
       --petos-text-muted: #047857; /* Emerald 600 */
       --petos-accent: #059669; /* Emerald 500 */
       --petos-border: #d1fae5; /* Green 100 */
-	  --petos-accent-blue: #3b82f6;
+	  --petos-border: accent-blue: #3b82f6;
       
       --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     }
@@ -276,6 +276,19 @@
 
     .petos-section .feature-card p {
       color: var(--petos-text-muted);
+    }
+
+	.pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 24px;
+      margin-top: 60px;
+    }
+
+    .pricing-card.pro {
+      border: 1px solid var(--accent-blue);
+      box-shadow: 0 12px 32px rgba(59, 130, 246, 0.15);
+      position: relative;
     }
 
     /* Comparison Table */
