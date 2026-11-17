@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - DGF Browser Control Unit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 0 20px;
+            color: #333;
+        }
+        h1 {
+            color: #111;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #111;
+            margin-top: 30px;
+            margin-bottom: 10px;
+            font-size: 1.25em;
+        }
+        p, li {
+            color: #444;
+        }
+        .updated-date {
+            color: #666;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+        .policy-box {
+            background-color: #f4f4f4;
+            padding: 30px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        code {
+            background-color: #e2e8f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.95em;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #666;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        a {
+            color: #0056b3;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Privacy Policy for DGF Browser Control Unit</h1>
+    <p class="updated-date">Last Updated: November 2026</p>
+
+    <div class="policy-box">
+        <h2 style="margin-top: 0;">1. Local-First Architecture & Data Collection</h2>
+        <p>The <strong>DGF Browser Control Unit</strong> is engineered as a local-first utility switch and edge proxy. The extension does not require user accounts, email addresses, names, or personal identifiers to operate. All domain clamping rules and live telemetry counters (trackers blocked, payloads isolated, and data saved) are evaluated locally within your browser.</p>
+        <p>To synchronize operating modes (Standard, Degraded, and Custom) with the Operating Hours Dashboard and maintain session continuity, the extension generates an anonymous local installation identifier (<code>installation_uuid</code>) and ephemeral 4-hour session tokens (<code>continuity_ref</code>). Basic anonymous operational state data (active mode selection, custom domain selections, and aggregate tracker-interception events) is transmitted securely to our backend strictly to enforce your selected operating hours.</p>
+
+        <h2>2. Zero Browsing History or Personal Data Harvesting</h2>
+        <p>We do <strong>not</strong> collect, log, store, sell, rent, or monetize your personal browsing history, visited website URLs, search queries, form inputs, or personal identity data. Network interception occurs directly at the browser edge.</p>
+
+        <h2>3. Extension Permissions Disclosure</h2>
+        <p>The DGF Browser Control Unit requests only the minimum Manifest V3 permissions required to enforce operating hours and block trackers at the browser edge:</p>
+        <ul>
+            <li><code>storage</code>: Stores your anonymous session token, current operating mode state, and local edge telemetry counters inside <code>chrome.storage.local</code>.</li>
+            <li><code>declarativeNetRequest</code> & <code>declarativeNetRequestFeedback</code>: Applies static baseline tracker filtering and dynamic domain clamping rules for Standard, Degraded, and Custom modes locally within the browser.</li>
+            <li><code>webRequest</code>: Detects locally blocked network requests (<code>net::ERR_BLOCKED_BY_CLIENT</code>) strictly to increment your local edge telemetry counters.</li>
+            <li><code>alarms</code>: Schedules automatic 4-hour session continuity token rotations and periodic operating-mode synchronization checks.</li>
+        </ul>
+
+        <h2>4. Data Sharing & Third Parties</h2>
+        <p>DGF Labs does not share, sell, or transfer any user data to third-party data brokers, advertisers, or analytics platforms.</p>
+
+        <h2>5. Contact</h2>
+        <p>For any privacy-related questions or technical inquiries regarding the DGF Browser Control Unit, please contact our engineering team at <a href="mailto:support@dgflabs.com">support@dgflabs.com</a>.</p>
+    </div>
+
+    <a href="index.html" class="back-link">← Back to DGF Labs</a>
+
+</body>
+</html>
