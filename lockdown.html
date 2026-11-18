@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:site_name" content="DGF Labs" />
+  <link rel="icon" href="https://dgflabs.com/favicon.png" sizes="48x48" />
+  <title>MV3 Backend Lockdown & Direct-Stripe Starter Kit | DGF Labs</title>
+  <style>
+    :root {
+      --bg-base: #0f172a;
+      --bg-surface: #1e293b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-emerald: #10b981;
+      --accent-blue: #3b82f6;
+      --border-color: #334155;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Global Header */
+    header {
+      padding: 24px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+      background-color: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
+
+    /* Hero Section */
+    .studio-hero {
+      max-width: 1000px;
+      margin: 80px auto 60px;
+      text-align: center;
+      padding: 0 24px;
+    }
+
+    .badge {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 12px;
+      letter-spacing: 0.1em;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .badge-middleware {
+      color: #60a5fa;
+      border: 1px solid #3b82f6;
+      background-color: rgba(59, 130, 246, 0.1);
+    }
+
+    .studio-hero h1 {
+      font-size: 48px;
+      line-height: 1.15;
+      margin: 0 0 24px 0;
+      letter-spacing: -0.02em;
+    }
+
+    .studio-hero p {
+      font-size: 20px;
+      color: var(--text-muted);
+      margin: 0 auto 36px auto;
+      max-width: 820px;
+    }
+
+    /* Buttons */
+    .btn-primary {
+      background-color: var(--accent-emerald);
+      color: #022c22;
+      padding: 16px 32px;
+      border-radius: 6px;
+      border: none;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 16px;
+      display: inline-block;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      background-color: #34d399;
+    }
+
+    .btn-primary:disabled,
+    .btn-secondary:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--text-main);
+      border: 1px solid #334155;
+      padding: 16px 32px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      display: inline-block;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-secondary:hover {
+      background-color: #047857;
+      border-color: #C1CCC2;
+    }
+
+    /* Section Containers */
+    .product-section {
+      padding: 80px 24px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .section-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .product-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .product-header h2 {
+      font-size: 38px;
+      margin: 0 0 16px 0;
+      letter-spacing: -0.02em;
+    }
+
+    .product-header p {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    /* Problem Callout Box */
+    .problem-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--accent-blue);
+      border-radius: 8px;
+      padding: 32px;
+      max-width: 960px;
+      margin: 0 auto 60px auto;
+    }
+
+    .problem-card h3 {
+      margin: 0 0 12px 0;
+      font-size: 20px;
+      color: var(--text-main);
+    }
+
+    .problem-card p {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 16px;
+    }
+
+    /* Live Render Log Terminal Block */
+    .terminal-box {
+      background-color: #090d16;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 24px;
+      max-width: 960px;
+      margin: 0 auto 60px auto;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.7;
+      color: #cbd5e1;
+      overflow-x: auto;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+    }
+
+    .terminal-header {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-emerald);
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .log-block {
+      color: #f43f5e;
+      font-weight: 700;
+    }
+
+    .log-fast {
+      color: var(--accent-emerald);
+      font-weight: 700;
+    }
+
+    /* Featured Video Container */
+    .video-featured {
+      max-width: 860px;
+      margin: 0 auto 60px auto;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+    }
+
+    .video-featured h3 {
+      margin: 0 0 8px 0;
+      font-size: 20px;
+    }
+
+    .video-featured p {
+      margin: 0 0 16px 0;
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+
+    .video-player {
+      width: 100%;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      background-color: #000;
+      display: block;
+    }<div class="video-grid">
+
+    /* Features Grid */
+    .grid-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    .feature-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      padding: 32px;
+      border-radius: 8px;
+    }
+
+    .feature-card h3 {
+      margin: 0 0 12px 0;
+      font-size: 18px;
+      color: var(--text-main);
+    }
+
+    .feature-card p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* Comparison Table */
+    .comparison-section {
+      max-width: 1000px;
+      margin: 60px auto;
+    }
+
+    .comparison-table-wrapper {
+      overflow-x: auto;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 15px;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .comparison-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .comparison-table th {
+      font-weight: 700;
+      color: var(--text-main);
+      background-color: rgba(15, 23, 42, 0.5);
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .comparison-table .col-dgf {
+      background-color: rgba(16, 185, 129, 0.05);
+      border-left: 1px solid var(--accent-emerald);
+      border-right: 1px solid var(--accent-emerald);
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .comparison-table th.col-dgf {
+      color: var(--accent-emerald);
+      border-top: 3px solid var(--accent-emerald);
+    }
+
+    /* Pricing Cards */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 24px;
+      max-width: 900px;
+      margin: 40px auto 0 auto;
+    }
+
+    .pricing-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      padding: 40px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pricing-card.pro {
+      border: 1px solid var(--accent-blue);
+      box-shadow: 0 12px 32px rgba(59, 130, 246, 0.15);
+      position: relative;
+    }
+
+    .pricing-card.pro::before {
+      content: "MULTI-PRODUCT STUDIO";
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--accent-blue);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 12px;
+      letter-spacing: 0.1em;
+    }
+
+    .pricing-tier {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .pricing-card.pro .pricing-tier {
+      color: var(--accent-blue);
+    }
+
+    .price {
+      font-size: 48px;
+      font-weight: 700;
+      margin: 12px 0 24px 0;
+      color: var(--text-main);
+    }
+
+    .price span {
+      font-size: 16px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .pricing-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 32px 0;
+      flex-grow: 1;
+    }
+
+    .pricing-features li {
+      margin-bottom: 12px;
+      font-size: 15px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .pricing-features li::before {
+      content: "✓";
+      color: var(--accent-emerald);
+      font-weight: bold;
+    }
+
+    /* Legal Disclaimers Box */
+    .legal-section {
+      max-width: 960px;
+      margin: 60px auto 0 auto;
+      background-color: rgba(30, 41, 59, 0.5);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 32px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .legal-section h4 {
+      color: var(--text-main);
+      margin: 16px 0 6px 0;
+      font-size: 14px;
+    }
+
+    .legal-section h4:first-child {
+      margin-top: 0;
+    }
+
+    .legal-section ul {
+      margin: 0 0 12px 0;
+      padding-left: 20px;
+    }
+
+    .legal-section li {
+      margin-bottom: 6px;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 14px;
+      padding: 60px 24px;
+      border-top: 1px solid var(--border-color);
+      background-color: var(--bg-base);
+    }
+
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo">⚙️ DGF Labs</a>
+    <div class="nav-links">
+      <a href="index.html#middleware">Middleware Proxy</a>
+      <a href="index.html#bcu">Browser Control Unit</a>
+      <a href="index.html#petos">PetOS Tracker</a>
+      <a href="#pricing" style="color: var(--accent-emerald);">Get Starter Kit</a>
+    </div>
+  </header>
+
+  <!-- Hero Positioning -->
+  <div class="studio-hero">
+    <div class="badge badge-middleware">DEVELOPER INFRASTRUCTURE & MV3 SECURITY</div>
+    <h1>Stop Leaving Your Chrome Extension’s API Keys and Revenue Exposed in Unpacked .crx Files.</h1>
+    <p>A production-hardened FastAPI + PostgreSQL backend and Manifest V3 service worker starter kit. Neutralize scraped .crx API keys, verify Stripe checkouts server-side without third-party middleman fees, and pass Chrome Web Store MV3 remote-code reviews on the first try.</p>
+    <a href="#pricing" class="btn-primary">Download the Starter Kit</a>
+  </div>
+
+  <!-- Architecture & Video Explainers -->
+  <section class="product-section">
+    <div class="section-inner">
+
+      <div class="problem-card">
+        <h3>Why This Exists (The Problem)</h3>
+        <p>Most MV3 extension boilerplates stop at the UI—giving you a popup template while leaving your backend endpoints and monetization wide open. Because any Chrome extension (<code>.crx</code>) can be unpacked in seconds, static API keys inside <code>background.js</code> get scraped by bots, and client-side <code>chrome.storage.local</code> paywalls get bypassed in DevTools. Worse, pulling external billing scripts violates Manifest V3's strict ban on remotely hosted code, while third-party payment wrappers take an ongoing cut of your revenue without protecting your backend API.</p>
+      </div>
+
+      <!-- Live Production Render Log Proof -->
+      <div class="terminal-box">
+        <div class="terminal-header">Live Render Production Telemetry — Sub-5ms Scraped Key Rejection</div>
+        <div>INFO:dgf.middleware:POST /continuity -&gt; 401 (<span class="log-fast">0.9ms</span>)</div>
+        <div><span class="log-block">[SECURITY BLOCK]</span> Missing or invalid Authorization header.</div>
+        <div>INFO:dgf.middleware:POST /continuity -&gt; 403 (<span class="log-fast">1.2ms</span>)</div>
+        <div><span class="log-block">[SECURITY BLOCK]</span> Scraped key rejected — missing installation_uuid.</div>
+        <div>INFO:dgf.middleware:POST /continuity -&gt; 403 (<span class="log-fast">4.9ms</span>)</div>
+        <div><span class="log-block">[SECURITY BLOCK]</span> Scraped key rejected — unregistered UUID: 00000000-1234-5678-0000-000000000000</div>
+        <div>INFO:dgf.middleware:GET /check-state -&gt; 404 (<span class="log-fast">3.9ms</span>)</div>
+      </div>
+
+      <!-- Video Explainers -->
+      <div class="product-header">
+        <h2>Inside the Unified Cryptographic Loop</h2>
+        <p>Watch how the 4-layer Conditioned Verification Membrane fuses licensing, API authority, and remote edge execution inside a single verification boundary.</p>
+      </div>
+
+      <div class="video-featured">
+        <h3>Architectural Deep-Dive: Building the DGF Membrane (9:58)</h3>
+        <p>Full 6-part technical walkthrough covering the codebase audit, the .crx scraping wave, Conditioned Verification Membraning, and live PostgreSQL sub-5ms validation.</p>
+        <video class="video-player" controls preload="metadata">
+          <source src="Building_DGF_Membrane.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <!-- What's Under The Hood -->
+      <div class="product-header" style="margin-top: 80px;">
+        <h2>What’s Under the Hood</h2>
+        <p>Everything you need to deploy a locked-down FastAPI + PostgreSQL gateway and Manifest V3 client bridge.</p>
+      </div>
+
+      <div class="grid-features">
+        <div class="feature-card">
+          <h3>4-Layer .crx Anti-Scraping Lockdown</h3>
+          <p>Even if an attacker unpacks your <code>.crx</code> and extracts your Bearer API key, backend requests are blocked (<code>HTTP 403</code>) unless accompanied by a registered <code>installation_uuid</code> and a live, rotating 4-hour <code>continuity_ref</code> session token (<code>±15 min</code> stealth jitter) behind explicit <code>chrome-extension://</code> CORS origin pinning.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Direct-Stripe Webhook &amp; Multi-Product Engine</h3>
+          <p>Cryptographically verified Stripe <code>checkout.session.completed</code> webhook handler backed by PostgreSQL (<code>middleware_licenses</code>). Supports single or multiple extensions on one shared backend via <code>product_id</code> isolation—zero ExtensionPay or third-party wrapper fees.</p>
+        </div>
+        <div class="feature-card">
+          <h3>MV3-Compliant Service Worker Bridge</h3>
+          <p>Lightweight, non-blocking <code>background.js</code> module with a race-condition-proof UUID generator, automatic 4-hour token rollover (<code>chrome.alarms</code>), automatic <code>HTTP 410</code> token refresh on protected calls, and direct Stripe <code>client_reference_id</code> checkout handoff—zero remote code execution.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Deploy-Ready FastAPI + Async SQLAlchemy</h3>
+          <p>Production-tested on Render + PostgreSQL with automatic table initialization, an async connection pool, a built-in local SQLite fallback for instant local testing, environment-gated debug routes (<code>DGF_DEBUG</code>), and a step-by-step setup guide.</p>
+        </div>
+      </div>
+
+      <!-- Licensing Tiers Matrix -->
+      <div class="comparison-section" id="pricing">
+        <div class="product-header">
+          <h2>Licensing Tiers</h2>
+          <p>Instant source-code download upon checkout. Zero recurring fees or revenue splits.</p>
+        </div>
+        <div class="comparison-table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Single-Extension License ($99)</th>
+                <th class="col-dgf">Multi-Product License ($199)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Permitted Extensions</strong></td>
+                <td>1 Chrome Web Store Extension ID</td>
+                <td class="col-dgf">Unlimited Extension IDs owned by you/your studio</td>
+              </tr>
+              <tr>
+                <td><strong>Full FastAPI + PostgreSQL Source (<code>main.py</code>)</strong></td>
+                <td>Included</td>
+                <td class="col-dgf">Included</td>
+              </tr>
+              <tr>
+                <td><strong>MV3 Service Worker Auth Bridge (<code>background.js</code>)</strong></td>
+                <td>Included</td>
+                <td class="col-dgf">Included</td>
+              </tr>
+              <tr>
+                <td><strong>4-Layer <code>.crx</code> API Key &amp; Token Lockdown</strong></td>
+                <td>Included</td>
+                <td class="col-dgf">Included</td>
+              </tr>
+              <tr>
+                <td><strong>Direct-Stripe Webhook &amp; <code>product_id</code> Routing</strong></td>
+                <td>Licensed for 1 product</td>
+                <td class="col-dgf">Licensed for unlimited products on 1 shared backend</td>
+              </tr>
+              <tr>
+                <td><strong>Ownership &amp; Fees</strong></td>
+                <td>Full source download • $0 recurring fees</td>
+                <td class="col-dgf">Full source download • $0 recurring fees</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Direct Stripe Checkout Cards -->
+        <div class="pricing-grid">
+          <div class="pricing-card">
+            <div class="pricing-tier">Single-Extension License</div>
+            <div class="price">$99 <span>/ one-time</span></div>
+            <ul class="pricing-features">
+              <li>Deploy across <strong>1 commercial or personal</strong> Chrome extension</li>
+              <li>Complete FastAPI + Async PostgreSQL backend source code</li>
+              <li>MV3 Service Worker Auth Bridge &amp; 4-hour token engine</li>
+              <li>Direct-Stripe webhook handler &amp; step-by-step <code>README.txt</code></li>
+            </ul>
+            <button class="btn-secondary" onclick="startKitCheckout('single', this)" style="text-align: center;">Buy Single-Extension License ($99)</button>
+          </div>
+
+          <div class="pricing-card pro">
+            <div class="pricing-tier">Multi-Product License</div>
+            <div class="price">$199 <span>/ one-time</span></div>
+            <ul class="pricing-features">
+              <li>Deploy across <strong>unlimited extensions</strong> owned by you or your studio</li>
+              <li>Multi-tenant <code>product_id</code> isolation on 1 shared backend</li>
+              <li>Complete FastAPI + Async PostgreSQL backend source code</li>
+              <li>MV3 Service Worker Auth Bridge &amp; step-by-step <code>README.txt</code></li>
+            </ul>
+            <button class="btn-primary" onclick="startKitCheckout('multi', this)" style="text-align: center;">Buy Multi-Product License ($199)</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Storefront Legal Disclaimers & Terms -->
+      <div class="legal-section">
+        <h4>License Scope &amp; Restrictions</h4>
+        <ul>
+          <li><em>Single-Extension ($99): Grants a non-exclusive, non-transferable license to deploy the backend and MV3 client bridge for one (1) commercial or personal browser extension.</em></li>
+          <li><em>Multi-Product ($199): Grants a non-exclusive, non-transferable license to deploy the codebase across unlimited browser extensions owned and operated by the purchasing individual or single business entity.</em></li>
+          <li><em>Prohibited Uses: Under both tiers, you may not redistribute, resell, sublicense, open-source, or publish the raw starter kit repository or derivative boilerplates to third parties.</em></li>
+        </ul>
+
+        <h4>Digital Product Refund Policy</h4>
+        <p><em>Due to the immediate, irrevocable nature of downloadable source code, all sales are final. Please review the technical stack requirements (Python 3.10+, FastAPI, SQLAlchemy/PostgreSQL, Manifest V3, Stripe) carefully before purchasing.</em></p>
+
+        <h4>Technical &amp; Compliance Disclaimer</h4>
+        <ul>
+          <li><em>No Affiliation: DGF Labs is an independent software provider and is not affiliated with, endorsed by, or sponsored by Google LLC, the Chrome Web Store, Stripe, Inc., or ExtensionPay.</em></li>
+          <li><em>Store Review &amp; Security: While this architecture is designed to align with Chrome Web Store Manifest V3 policies (specifically prohibiting remotely hosted code), DGF Labs does not guarantee Chrome Web Store approval for your specific extension, as approval depends on your full manifest, permissions, and application logic.</em></li>
+          <li><em>As-Is Warranty: The software is provided strictly "AS-IS" as a self-hosted architectural template, without warranty or ongoing technical support of any kind. You are 100% responsible for securing and maintaining your own production hosting environment, CORS origins, API keys, webhook secrets, and database backups.</em></li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    © 2026 DGF Labs. Independent security research and digital governance.<br>
+    General: <a href="mailto:info@dgflabs.com">info@dgflabs.com</a> | Commercial: <a href="mailto:sales@dgflabs.com">sales@dgflabs.com</a><br><br>
+    <a href="support.html">Support</a> | <a href="privacy.html">DGF Middleware Privacy</a> | <a href="bcu-privacy.html">BCU Privacy</a> | <a href="petos-privacy.html">PetOS Privacy</a> | <a href="license.html">License &amp; Terms</a>
+  </footer>
+
+  <script>
+    const RENDER_API_BASE = "https://digital-governance-framework.onrender.com";
+
+    async function startKitCheckout(tier, btnElement) {
+      const originalText = btnElement.innerText;
+      btnElement.disabled = true;
+      btnElement.innerText = "Redirecting to Stripe...";
+
+      try {
+        const response = await fetch(`${RENDER_API_BASE}/api/create-checkout-session`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ tier: tier })
+        });
+
+        const data = await response.json();
+        if (data.url) {
+          window.location.href = data.url;
+        } else {
+          alert("Checkout error: " + (data.error || "Unable to create session."));
+          btnElement.disabled = false;
+          btnElement.innerText = originalText;
+        }
+      } catch (err) {
+        alert("Network error connecting to checkout server. Please try again.");
+        btnElement.disabled = false;
+        btnElement.innerText = originalText;
+      }
+    }
+  </script>
+
+</body>
+</html>
