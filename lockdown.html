@@ -508,7 +508,7 @@
 
       <div class="problem-card">
         <h3>Why This Exists (The Problem)</h3>
-        <p>Most MV3 extension boilerplates stop at the UI—giving you a popup template while leaving your backend endpoints and monetization wide open. Because any Chrome extension (<code>.crx</code>) can be unpacked in seconds, static API keys inside <code>background.js</code> get scraped by bots, and client-side <code>chrome.storage.local</code> paywalls get bypassed in DevTools. Worse, pulling external billing scripts violates Manifest V3's strict ban on remotely hosted code, while third-party payment wrappers take an ongoing cut of your revenue without protecting your backend API.</p>
+        <p>Most MV3 extension boilerplates stop at the UI—handing you a popup template while leaving your backend endpoints and monetization wide open. In the wake of the recent Chrome Web Store <code>.crx</code> scraping wave, automated bots can unpack any published extension in seconds to harvest hardcoded API keys, Bearer tokens, and backend endpoints straight out of <code>background.js</code>. Once a static key is exposed, developers are trapped in reactive damage control: scrambling to locate and revoke leaked credentials, hitting permission roadblocks, or breaking live users the moment they kill the key. Meanwhile, client-side <code>chrome.storage.local</code> paywalls are easily bypassed in DevTools, external billing scripts violate Manifest V3's strict ban on remotely hosted code, and third-party payment wrappers take an ongoing cut of your revenue without protecting your API. This kit eliminates that exposure at the server boundary—securing your monetization and rendering an extracted <code>.crx</code> API key useless on its own.</p>
       </div>
 
       <!-- Live Production Render Log Proof -->
@@ -533,7 +533,7 @@
         <h3>Architectural Deep-Dive: Building the DGF Membrane (9:58)</h3>
         <p>Full 6-part technical walkthrough covering the codebase audit, the .crx scraping wave, Conditioned Verification Membraning, and live PostgreSQL sub-5ms validation.</p>
         <video class="video-player" controls preload="metadata">
-          <source src="Building_DGF_Membrane.mp4" type="video/mp4">
+          <source src="https://github.com/satx6672/dgflabs-website/releases/tag/v1.0.0">
         </video>
       </div>
 
