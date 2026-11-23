@@ -3,9 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MV3 Backend Lockdown &amp; Direct-Stripe Starter Kit | Stop Chrome Extension .crx Scraping | DGF Labs</title>
+  <meta name="description" content="Built in response to Chrome Web Store .crx scraping. Protect your Manifest V3 Chrome extension backend from exposed API keys and stolen Bearer tokens using FastAPI, PostgreSQL, installation UUID verification, and direct Stripe webhooks.">
+  <meta name="keywords" content="Chrome Web Store crx scraping, Manifest V3 exposed API key, protect Chrome extension backend, background.js Bearer token security, FastAPI Chrome extension starter kit, Direct Stripe Chrome extension, MV3 lockdown">
+  <link rel="canonical" href="https://dgflabs.com/lockdown.html" />
   <meta property="og:site_name" content="DGF Labs" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Stop Chrome Extension .crx Scraping &amp; Exposed API Keys | MV3 Lockdown Kit" />
+  <meta property="og:description" content="Production-hardened FastAPI + PostgreSQL backend and MV3 service worker bridge. Neutralize scraped .crx API keys in under 5ms and verify Stripe checkouts server-side with zero middleman fees." />
+  <meta property="og:url" content="https://dgflabs.com/lockdown.html" />
   <link rel="icon" href="https://dgflabs.com/favicon.png" sizes="48x48" />
-  <title>MV3 Backend Lockdown & Direct-Stripe Starter Kit | DGF Labs</title>
   <style>
     :root {
       --bg-base: #0f172a;
@@ -193,16 +200,21 @@
       margin: 0 auto 60px auto;
     }
 
+    .problem-card h2,
     .problem-card h3 {
-      margin: 0 0 12px 0;
-      font-size: 20px;
+      margin: 0 0 14px 0;
+      font-size: 22px;
       color: var(--text-main);
     }
 
     .problem-card p {
-      margin: 0;
+      margin: 0 0 14px 0;
       color: var(--text-muted);
       font-size: 16px;
+    }
+
+    .problem-card p:last-child {
+      margin-bottom: 0;
     }
 
     /* Live Render Log Terminal Block */
@@ -268,7 +280,7 @@
       border: 1px solid var(--border-color);
       background-color: #000;
       display: block;
-    }<div class="video-grid">
+    }
 
     /* Features Grid */
     .grid-features {
@@ -496,9 +508,9 @@
 
   <!-- Hero Positioning -->
   <div class="studio-hero">
-    <div class="badge badge-middleware">DEVELOPER INFRASTRUCTURE & MV3 SECURITY</div>
+    <div class="badge badge-middleware">DEVELOPER INFRASTRUCTURE &amp; MV3 SECURITY</div>
     <h1>Stop Leaving Your Chrome Extension’s API Keys and Revenue Exposed in Unpacked .crx Files.</h1>
-    <p>A production-hardened FastAPI + PostgreSQL backend and Manifest V3 service worker starter kit. Neutralize scraped .crx API keys, verify Stripe checkouts server-side without third-party middleman fees, and pass Chrome Web Store MV3 remote-code reviews on the first try.</p>
+    <p>A production-hardened FastAPI + PostgreSQL backend and Manifest V3 service worker starter kit. Neutralize scraped .crx API keys before reactive revocation panic sets in, verify Stripe checkouts server-side without third-party middleman fees, and pass Chrome Web Store MV3 remote-code reviews on the first try.</p>
     <a href="#pricing" class="btn-primary">Download the Starter Kit</a>
   </div>
 
@@ -507,8 +519,9 @@
     <div class="section-inner">
 
       <div class="problem-card">
-        <h3>Why This Exists (The Problem)</h3>
-        <p>Most MV3 extension boilerplates stop at the UI—handing you a popup template while leaving your backend endpoints and monetization wide open. In the wake of the recent Chrome Web Store <code>.crx</code> scraping wave, automated bots can unpack any published extension in seconds to harvest hardcoded API keys, Bearer tokens, and backend endpoints straight out of <code>background.js</code>. Once a static key is exposed, developers are trapped in reactive damage control: scrambling to locate and revoke leaked credentials, hitting permission roadblocks, or breaking live users the moment they kill the key. Meanwhile, client-side <code>chrome.storage.local</code> paywalls are easily bypassed in DevTools, external billing scripts violate Manifest V3's strict ban on remotely hosted code, and third-party payment wrappers take an ongoing cut of your revenue without protecting your API. This kit eliminates that exposure at the server boundary—securing your monetization and rendering an extracted <code>.crx</code> API key useless on its own.</p>
+        <h2>Built in Response to Automated Chrome Web Store .crx Scraping</h2>
+        <p>Automated bots routinely sweep the Chrome Web Store to download and unpack published <code>.crx</code> packages within hours of release—harvesting hardcoded API keys, Bearer tokens, and backend endpoints straight out of Manifest V3 files like <code>background.js</code>. Once a static key is exposed, developers get trapped in reactive damage control: scrambling to locate and revoke leaked credentials, fighting IAM permission errors, or breaking every legitimate user’s live extension the moment they pull the plug.</p>
+        <p>Most MV3 extension boilerplates stop at the UI—leaving your backend endpoints unprotected and client-side <code>chrome.storage.local</code> paywalls trivial to bypass in DevTools. Worse, pulling external billing scripts violates Manifest V3’s strict ban on remotely hosted code, while third-party payment wrappers take an ongoing cut of your revenue without securing your API. The MV3 Lockdown Kit eliminates static key vulnerability at the server boundary—making an extracted API key useless on its own.</p>
       </div>
 
       <!-- Live Production Render Log Proof -->
@@ -532,8 +545,9 @@
       <div class="video-featured">
         <h3>Architectural Deep-Dive: Building the DGF Membrane (9:58)</h3>
         <p>Full 6-part technical walkthrough covering the codebase audit, the .crx scraping wave, Conditioned Verification Membraning, and live PostgreSQL sub-5ms validation.</p>
+        <!-- NOTE: Replace src below with the direct .mp4 asset URL from your GitHub Release (e.g., .../releases/download/v1.0.0/your-video.mp4) -->
         <video class="video-player" controls preload="metadata">
-          <source src="https://github.com/satx6672/dgflabs-website/releases/tag/v1.0.0">
+          <source src="https://github.com/satx6672/dgflabs-website/releases/download/v1.0.0/YOUR_VIDEO_FILENAME.mp4" type="video/mp4">
         </video>
       </div>
 
