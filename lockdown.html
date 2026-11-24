@@ -339,6 +339,12 @@
     .comparison-table tr:last-child td {
       border-bottom: none;
     }
+    
+    /* Cap the bottom of the highlighted green column inside the last row */
+    .comparison-table tbody tr:last-child td.col-dgf {
+      border-bottom: 2px solid var(--accent-emerald);
+      border-bottom-right-radius: 8px;
+    }
 
     .comparison-table th {
       font-weight: 700;
