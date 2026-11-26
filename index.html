@@ -151,7 +151,7 @@
       color: #060D29;
       padding: 16px 32px;
       border-radius: 6px;
-	  border: 1px solid: #C1CCC2;
+      border: 1px solid #C1CCC2;
       text-decoration: none;
       font-weight: 700;
       font-size: 16px;
@@ -162,7 +162,7 @@
     .btn-petos:hover {
       transform: translateY(-2px);
       background-color: #244BE6;
-	  border: 1px solid: #C1CCC2;
+      border: 1px solid #C1CCC2;
     }
 
     /* Section Containers */
@@ -217,8 +217,9 @@
 
     .product-header p {
       font-size: 18px;
-      max-width: 600px;
+      max-width: 680px;
       margin: 0 auto;
+      color: var(--text-muted);
     }
 
     .petos-section .product-header p {
@@ -347,7 +348,7 @@
       color: var(--text-muted);
     }
 
-    /* Pricing (Middleware) */
+    /* Pricing */
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -371,7 +372,7 @@
     }
     
     .pricing-card.pro::before {
-      content: "RECOMMENDED";
+      content: "ONE-TIME LIFETIME LICENSE";
       position: absolute;
       top: -12px;
       left: 50%;
@@ -383,6 +384,7 @@
       padding: 4px 12px;
       border-radius: 12px;
       letter-spacing: 0.1em;
+      white-space: nowrap;
     }
 
     .pricing-tier {
@@ -432,15 +434,19 @@
       font-weight: bold;
     }
 
+    .pricing-note {
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
     /* ---- PetOS Pricing Specific Overrides ---- */
-    
-    /* Base PetOS Pricing Card */
     .petos-section .pricing-card {
       background-color: var(--petos-surface);
       border: 1px solid var(--petos-border);
     }
 
-    /* Fix Text Readability on Light Theme */
     .petos-section .pricing-card .price {
       color: var(--petos-text);
     }
@@ -457,13 +463,13 @@
       color: var(--petos-text-muted);
     }
 
-   .petos-section .pricing-card.pro {
+    .petos-section .pricing-card.pro {
       border: 1px solid #8FD154;
       box-shadow: 0 12px 32px rgba(143, 209, 84, 0.15);
       position: relative;
     }
 
-	.petos-section .pricing-card.pro::before {
+    .petos-section .pricing-card.pro::before {
       content: "RECOMMENDED";
       position: absolute;
       top: -12px;
@@ -523,7 +529,7 @@
       border: 1px solid var(--border-color);
       border-radius: 12px;
       padding: 40px;
-      max-width: 420px;
+      max-width: 440px;
       width: 90%;
       position: relative;
       box-shadow: 0 24px 48px rgba(0,0,0,0.5);
@@ -626,14 +632,14 @@
       <a href="#middleware">Middleware Proxy</a>
       <a href="#bcu">Browser Control Unit</a>
       <a href="#petos">PetOS Tracker</a>
-	  <a href="lockdown.html">MV3 Lockdown Kit</a>
+      <a href="lockdown.html">MV3 Lockdown Kit</a>
     </div>
   </header>
 
   <!-- Studio Hero -->
   <div class="studio-hero">
     <h1>Your browser. Your data.<br>Zero compromises.</h1>
-    <p>DGF Labs specializes in professional-grade digital governance, local-first security, and high-performance browser extensions. From cryptographic continuity handshakes to live telemetry auditing, our infrastructure is built to protect privacy without sacrificing speed.</p>
+    <p>DGF Labs specializes in professional-grade digital governance, local-first security, and high-performance browser extensions. From browser-edge boundary enforcement to live interception ledgers, our infrastructure is built to protect session integrity without sacrificing speed.</p>
   </div>
 
   <!-- Wing 1: Security & Infrastructure (Middleware) -->
@@ -642,82 +648,82 @@
       <div class="product-header">
         <div class="badge badge-middleware">SECURITY & INFRASTRUCTURE</div>
         <h2>DGF Middleware Edge Proxy</h2>
-        <p>A Manifest V3 security proxy that shreds anti-adblock modals, drops telemetry payloads, and rotates your identity footprint in the background.</p>
+        <p>A local-first Manifest V3 browser-edge membrane that enforces 4-layer boundary protection against third-party script injection, data brokers, and telemetry—with zero remote kill-switch.</p>
       </div>
 
-      <!-- Middleware Image Assets Showcase -->
+      <!-- Middleware v1.4.8 Image Assets Showcase -->
       <div class="showcase-grid">
-        <img src="DGF Labs 1280x800.2.jpeg" alt="Zero-Profile Privacy Forbes Defuser" class="showcase-img">
-        <img src="DGF Labs 1280x800.1.jpg" alt="Live Edge Interception Terminal" class="showcase-img">
-        <img src="DGF Labs 1280x800.3.jpg" alt="Cloud-Tethered Continuity Render Sync" class="showcase-img">
-        <img src="DGF Labs 1280x800.4.jpg" alt="Real-Time Diagnostics Bandwidth" class="showcase-img">
+        <img src="edge-proxy-hero-1280x800.jpg" alt="Local-First Browser-Edge Membrane Console" class="showcase-img">
+        <img src="edge-proxy-layers-1280x800.jpg" alt="4-Layer Boundary Enforcement Architecture" class="showcase-img">
+        <img src="edge-proxy-popup-1280x800.jpg" alt="2-Second Boundary Visibility Compact Popup" class="showcase-img">
+        <img src="edge-proxy-overview-1280x800.jpg" alt="DGF Middleware Edge Proxy Complete Overview" class="showcase-img">
       </div>
 
       <div class="grid-features">
         <div class="feature-card">
-          <h3>Advanced Encapsulation Piercing</h3>
-          <p>Our recursive shredder actively hunts down and neutralizes hidden trackers and anti-adblock modals buried deep inside Shadow DOM components.</p>
+          <h3>4-Layer Boundary Enforcement</h3>
+          <p>Three domain-anchored Manifest V3 static rulesets enforce third-party Script Containment, Data-Broker Isolation, and Core Telemetry Boundaries—leaving first-party logins and workflows untouched.</p>
         </div>
         <div class="feature-card">
-          <h3>Enterprise-Grade Stealth</h3>
-          <p>Maintains secure, authenticated telemetry with our Render backend via cryptographic jitter, avoiding rigid heartbeat intervals.</p>
+          <h3>In-Page Execution Defuser</h3>
+          <p>Injects at <code>document_start</code> in the page's <code>MAIN</code> world to intercept and safely stub blocked <code>sendBeacon</code>, <code>fetch</code>, <code>XHR</code>, and dynamic script calls in memory before sites break.</p>
         </div>
         <div class="feature-card">
-          <h3>Zero-Latency Edge Execution</h3>
-          <p>Throttled native mutation observers ensure the DOM shredder operates natively with zero memory leaks. The browser stays blazing fast.</p>
+          <h3>Local-First Console & Live Ledger</h3>
+          <p>Inspect real-time boundary drops across <code>SCRIPT</code>, <code>XHR</code>, <code>PING</code>, <code>IMAGE</code>, and <code>SUB_FRAME</code> vectors inside a packaged local console and 2-second toolbar popup—with zero remote control plane.</p>
         </div>
       </div>
 
       <div class="comparison-section">
         <div class="product-header" style="margin-bottom: 40px;">
           <h2>The Edge Proxy Standard</h2>
-          <p>Why power users are dropping legacy network blockers.</p>
+          <p>Why security-conscious users are moving beyond generic ad-blockers.</p>
         </div>
         <div class="comparison-table-wrapper">
           <table class="comparison-table">
             <thead>
               <tr>
                 <th>Core Capability</th>
-                <th class="col-dgf">DGF Middleware (Pro)</th>
-                <th class="col-comp">Premium Privacy Proxies</th>
+                <th class="col-dgf">DGF Middleware Edge Proxy</th>
+                <th class="col-comp">Subscription Privacy Proxies</th>
                 <th class="col-comp">Legacy MV2 Extensions</th>
                 <th class="col-comp">Basic MV3 Blockers</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><strong>Monetization Model</strong></td>
+                <td><strong>License Model</strong></td>
                 <td class="col-dgf"><span class="highlight">$19.99 Lifetime</span> (One-time)</td>
                 <td class="col-comp">$4.99 / month</td>
                 <td class="col-comp">$2.49 / month</td>
                 <td class="col-comp">Free</td>
               </tr>
               <tr>
-                <td><strong>Extension Architecture</strong></td>
-                <td class="col-dgf"><span class="highlight">✅ Native MV3</span> (Built from scratch)</td>
-                <td class="col-comp">❌ MV2 Migrated Codebase</td>
-                <td class="col-comp">❌ MV2 Migrated Codebase</td>
-                <td class="col-comp">✅ Static MV3 Ruleset</td>
+                <td><strong>Architecture</strong></td>
+                <td class="col-dgf"><span class="highlight">✅ Native MV3</span> (3-Tier Rulesets + Defuser)</td>
+                <td class="col-comp">❌ Cloud-Tethered Proxy</td>
+                <td class="col-comp">❌ Deprecated MV2</td>
+                <td class="col-comp">✅ Static Rules Only</td>
               </tr>
               <tr>
-                <td><strong>Anti-Adblock Defusing</strong></td>
-                <td class="col-dgf"><span class="highlight">✅ Yes</span> (Shadow DOM Piercing)</td>
-                <td class="col-comp">❌ Standard DOM Only</td>
-                <td class="col-comp">✅ Yes (Traditional Polling)</td>
-                <td class="col-comp">❌ Limited to Static Rules</td>
+                <td><strong>3rd-Party Script Containment</strong></td>
+                <td class="col-dgf"><span class="highlight">✅ Yes</span> (Edge DNR + <code>document_start</code> Stubbing)</td>
+                <td class="col-comp">❌ Generic Filter Lists</td>
+                <td class="col-comp">⚠️ Broad DOM Breaking</td>
+                <td class="col-comp">❌ Network Only</td>
               </tr>
               <tr>
-                <td><strong>Edge Audit Logging</strong></td>
-                <td class="col-dgf"><span class="highlight">✅ Yes</span> (Real-Time Terminal UI)</td>
-                <td class="col-comp">❌ Paywalled</td>
-                <td class="col-comp">❌ Static text lists only</td>
-                <td class="col-comp">❌ Static text lists only</td>
+                <td><strong>Live Interception Ledger</strong></td>
+                <td class="col-dgf"><span class="highlight">✅ Yes</span> (Local Governance Console + Popup)</td>
+                <td class="col-comp">❌ Cloud Dashboard</td>
+                <td class="col-comp">❌ Raw Logs Only</td>
+                <td class="col-comp">❌ None</td>
               </tr>
               <tr>
-                <td><strong>Data Privacy Stance</strong></td>
-                <td class="col-dgf"><span class="highlight">✅ Local-First</span> (Zero cloud tracking)</td>
-                <td class="col-comp">❌ Cloud Analytics</td>
-                <td class="col-comp">❌ Cloud Telemetry</td>
+                <td><strong>Control Plane & Privacy</strong></td>
+                <td class="col-dgf"><span class="highlight">✅ Local-First</span> (Zero Remote Kill-Switch)</td>
+                <td class="col-comp">❌ Account + Cloud Tracking</td>
+                <td class="col-comp">❌ Remote Telemetry</td>
                 <td class="col-comp">✅ Local-First</td>
               </tr>
             </tbody>
@@ -725,28 +731,19 @@
         </div>
       </div>
 
-      <div class="pricing-grid">
-        <div class="pricing-card">
-          <div class="pricing-tier">Normal Mode</div>
-          <div class="price">Free</div>
-          <ul class="pricing-features">
-            <li>Blocks up to 50 active trackers per session</li>
-            <li>Prevents 0.75 MB of data exfiltration</li>
-            <li>Advanced Shadow DOM Piercer</li>
-            <li>Live Telemetry UI Counters</li>
-          </ul>
-          <a href="https://chromewebstore.google.com/detail/lmndagmoinleoinkhildkjfgbaddlbdm?authuser=0&hl=en" class="btn-secondary" style="text-align: center;">Install Extension</a>
-        </div>
+      <div class="pricing-grid" style="max-width: 560px; margin-left: auto; margin-right: auto;">
         <div class="pricing-card pro">
-          <div class="pricing-tier">Pro Mode</div>
+          <div class="pricing-tier">Edge Membrane — Full Access</div>
           <div class="price">$19.99 <span>/ one-time</span></div>
           <ul class="pricing-features">
-            <li>Unrestricted edge filtering & tracker blocking</li>
-            <li>Persistent live telemetry and data metrics</li>
-            <li>Exclusive Terminal Edge Audit Log</li>
-            <li>Cryptographic continuity handshakes via Render</li>
+            <li>All 3 static third-party rulesets (Script Containment, Data-Broker Isolation, Core Telemetry)</li>
+            <li><code>document_start</code> MAIN-world In-Page Execution Defuser (<code>defuser.js</code>)</li>
+            <li>Packaged local Edge Governance Console &amp; compact 2-second toolbar status popup</li>
+            <li>Live Interception Ledger &amp; 4-hour ephemeral Session Continuity rotation</li>
+            <li>Zero user account required — locally bound with zero remote kill-switch</li>
           </ul>
-          <a href="#" class="btn-primary" style="text-align: center;">Unlock Pro Mode</a>
+          <a href="#" class="btn-primary" style="text-align: center;">Install &amp; Activate</a>
+          <div class="pricing-note">Installs from the Chrome Web Store in Standby mode; activate directly inside your local Governance Console.</div>
         </div>
       </div>
     </div>
@@ -763,12 +760,12 @@
 
       <!-- Browser Control Unit Image Assets Showcase -->
       <div class="showcase-grid">
-		<img src="BCU6_640X400.jpg" alt="DGF Browser Control Unit Complete Overview" class="showcase-img">
-        <img src="BCU2_640X400.jpg" alt="Take Back Control - Enforce Operating Hours" class="showcase-img">
-        <img src="BCU4_640X400.jpg" alt="Custom Site Blocking (Clamping)" class="showcase-img">
-        <img src="BCU3_640X400.jpg" alt="4-Hour Session Locked OTP Enforcement" class="showcase-img">
-        <img src="BCU5_640X400.jpg" alt="Track Privacy Metrics - Live Edge Telemetry" class="showcase-img">
-        <img src="BCU1_640X400.jpg" alt="Experience Absolute Focus - Protects You From Distraction" class="showcase-img">
+        <img src="BCU2_1280X800.jpg" alt="Take Back Control - Enforce Operating Hours" class="showcase-img">
+        <img src="BCU4_1280X800.jpg" alt="Custom Site Blocking (Clamping)" class="showcase-img">
+        <img src="BCU3_1280X800.jpg" alt="4-Hour Session Locked OTP Enforcement" class="showcase-img">
+        <img src="BCU5_1280X800.jpg" alt="Track Privacy Metrics - Live Edge Telemetry" class="showcase-img">
+        <img src="BCU1_1280X800.jpg" alt="Experience Absolute Focus - Protects You From Distraction" class="showcase-img">
+        <img src="BCU6_1280X800.jpg" alt="DGF Browser Control Unit Complete Overview" class="showcase-img">
       </div>
 
       <div class="grid-features">
@@ -814,7 +811,7 @@
       <!-- PetOS Image Assets Showcase -->
       <div class="showcase-grid">
         <img src="petos-collage.png" alt="PetOS Medication Tracker Dashboard" class="showcase-img">
-	<img src="petos-drawers.png" alt="PetOS Medication Tracker Drawers" class="showcase-img">
+        <img src="petos-drawers.png" alt="PetOS Medication Tracker Drawers" class="showcase-img">
       </div>
 
       <div class="grid-features">
@@ -839,7 +836,7 @@
           <ul class="pricing-features">
             <li>Vaccines module access & Bell badge visual alert</li>
             <li>Add and manage Vaccination records for one pet</li>
-            <li>Local Chrome storage, no extenal servers, and no data sharing</li>
+            <li>Local Chrome storage, no external servers, and no data sharing</li>
             <li>Chronologically organized, and unalterable Vaccination History ledger</li>
           </ul>
           <a href="https://chromewebstore.google.com/detail/cincepimhedmpioadlnbffpnpigeijen?authuser=0&hl=en" class="btn-secondary" style="text-align: center;">Install Extension</a>
@@ -850,7 +847,7 @@
           <ul class="pricing-features">
             <li>Vaccines, Meds, Vet Visits, Notes module access</li>
             <li>Add and manage unlimited pets</li>
-            <li>Bell badge and Meds tab persisten pulse visual alerts</li>
+            <li>Bell badge and Meds tab persistent pulse visual alerts</li>
             <li>Meds and Notes modules job aids, SOAP Notes & desktop-inspired repository</li>
           </ul>
           <a href="#" class="btn-petos" style="text-align: center; margin-top: 60px;">Unlock Pro Mode</a>
@@ -862,21 +859,21 @@
   <footer>
     © 2026 DGF Labs. Independent security research and digital governance.<br>
     General: <a href="mailto:info@dgflabs.com">info@dgflabs.com</a> | Commercial: <a href="mailto:sales@dgflabs.com">sales@dgflabs.com</a><br><br>
-    <a href="support.html">Support</a> | <a href="privacy.html">DGF Middleware Privacy</a> | <a href="petos-privacy.html">PetOS Privacy</a> | <a href="bcu-privacy.html">Browser Control Unit Privacy</a> | <a href="license.html">License & Terms</a>
+    <a href="support.html">Support</a> | <a href="privacy.html">DGF Middleware Privacy</a> | <a href="petos-privacy.html">PetOS Privacy</a> | <a href="license.html">License & Terms</a>
   </footer>
 
-  <!-- DGF Middleware Pro Modal -->
+  <!-- DGF Middleware Activation Modal -->
   <div id="middleware-modal" class="modal-overlay">
     <div class="modal-content">
       <button class="modal-close" id="close-modal">&times;</button>
-      <div class="badge badge-middleware" style="margin-bottom: 12px;">PRO UPGRADE PATH</div>
-      <h3 class="modal-title">How to Unlock Pro Mode</h3>
-      <p class="modal-desc">Pro upgrades are processed securely from within the extension to ensure your license is instantly bound to your browser.</p>
+      <div class="badge badge-middleware" style="margin-bottom: 12px;">LIFETIME ACTIVATION FLOW</div>
+      <h3 class="modal-title">How to Activate Your Edge Membrane</h3>
+      <p class="modal-desc">Activation is handled locally from inside your Edge Governance Console with zero user account required.</p>
       
       <ol style="color: var(--text-muted); font-size: 14px; margin-bottom: 24px; padding-left: 20px; line-height: 1.6;">
-        <li>Install the free DGF Middleware extension.</li>
-        <li>Open the extension popup in your browser.</li>
-        <li>Click the green <strong>Unlock Pro Mode</strong> button to complete the $19.99 checkout.</li>
+        <li>Install <strong>DGF Middleware Edge Proxy</strong> from the Chrome Web Store. Your local Governance Console opens automatically in Standby mode.</li>
+        <li>Click <strong>Activate Lifetime License</strong> to complete the $19.99 one-time Stripe checkout bound to your browser's anonymous Instance ID.</li>
+        <li>Return to your Governance Console tab and click <strong>Verify Activation</strong> to arm all 4 local boundary layers immediately.</li>
       </ol>
       
       <a href="https://chromewebstore.google.com/detail/lmndagmoinleoinkhildkjfgbaddlbdm?authuser=0&hl=en" target="_blank" class="modal-checkout-btn">

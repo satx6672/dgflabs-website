@@ -3,37 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - DGF Labs</title>
+    <title>Privacy Policy - DGF Middleware Edge Proxy | DGF Labs</title>
     <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #333; }
-        h1 { color: #111; }
-        h2 { border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-top: 30px; }
-        p, ul { margin-bottom: 20px; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.65; max-width: 820px; margin: 40px auto; padding: 0 20px; color: #1e293b; }
+        h1 { color: #0f172a; margin-bottom: 6px; }
+        h2 { border-bottom: 1px solid #cbd5e1; padding-bottom: 6px; margin-top: 32px; color: #0f172a; }
+        p, ul { margin-bottom: 18px; }
+        li { margin-bottom: 8px; }
+        code { background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
     </style>
 </head>
 <body>
 
-    <h1>DGF Middleware Privacy Policy</h1>
-    <p><strong>Effective Date:</strong> October 29, 2026</p>
+    <h1>DGF Middleware Edge Proxy — Privacy Policy</h1>
+    <p><strong>Effective Date:</strong> November 25, 2026</p>
 
     <h2>1. Overview</h2>
-    <p>DGF Labs ("we", "our") operates the DGF Middleware Edge Proxy browser extension. We are committed to local-first security and strict data minimization. This policy explains how our extension handles data.</p>
+    <p>DGF Labs ("we", "our") develops and operates the <strong>DGF Middleware Edge Proxy</strong> browser extension (v1.4.8+). The extension is architected as a local-first browser-edge membrane with strict data minimization and no user account requirement. This policy describes exactly what data stays on your device and what minimal non-personal state is exchanged with our servers.</p>
 
-    <h2>2. Data Collection and Usage</h2>
-    <p>The DGF Middleware operates primarily as a local-first transport layer. To establish cryptographic session continuity, the extension communicates with our proprietary backend servers.</p>
+    <h2>2. Local-Only Data (Never Leaves Your Browser)</h2>
+    <p>All active boundary enforcement runs locally inside Chrome via Manifest V3 <code>declarativeNetRequest</code> rulesets and a packaged local script (<code>defuser.js</code>).</p>
     <ul>
-        <li><strong>Telemetry and State Data:</strong> The extension generates and routes temporary cryptographic tokens (such as continuity references and action states) to our backend to execute stateful sequential validation.</li>
-        <li><strong>No Behavioral Harvesting:</strong> We do not pool, monetize, or track your personal browsing history, search queries, or identity.</li>
+        <li><strong>Live Interception Ledger:</strong> The rolling 30-entry audit log displayed in your local Edge Governance Console and toolbar popup (timestamps, resource vector types, blocked third-party origins, and initiating hostnames) is stored exclusively in your browser's local storage (<code>chrome.storage.local</code>) and is never transmitted to DGF Labs or any third party. You can clear this ledger at any time.</li>
+        <li><strong>Enterprise Managed Policies:</strong> If deployed in a managed corporate environment, read-only custom domain blocklists may be supplied locally by your organization's administrator via Chrome's <code>chrome.storage.managed</code> API.</li>
     </ul>
 
-    <h2>3. Data Storage</h2>
-    <p>Cryptographic session tokens are stored locally on your device using standard Manifest V3 local storage APIs. Server-side provisional states are ephemeral and exist only to validate the immediate cryptographic handshake.</p>
+    <h2>3. Minimal Server Communication (Zero Browsing History)</h2>
+    <p>The extension communicates with the DGF backend (<code>digital-governance-framework.onrender.com</code>) solely for three narrowly scoped technical functions:</p>
+    <ul>
+        <li><strong>Anonymous License Verification:</strong> On install, the extension generates a random local UUID (<code>installation_uuid</code>) stored in <code>chrome.storage.local</code>. This anonymous identifier is checked against <code>/license/{uuid}</code> to verify lifetime license activation and is passed as <code>client_reference_id</code> when you choose to open Stripe Checkout. No email address, name, or account is required by the extension.</li>
+        <li><strong>Ephemeral Session Continuity:</strong> For activated installations, the extension requests a rotating 4-hour anonymous continuity token (<code>continuity_ref</code>) via <code>/continuity</code>.</li>
+        <li><strong>Rate-Limited Aggregate Signal (SRV):</strong> For activated installations, at most once every 60 seconds during active boundary drops, the extension emits a non-identifying aggregate signal to <code>/srv</code> containing the ephemeral continuity token, harm classification (<code>Class1_DataExfiltration</code>), timestamp, and cumulative drop count. <strong>No visited URLs, blocked domain names, page contents, search queries, or personally identifiable information (PII) are ever included in these transmissions.</strong></li>
+    </ul>
 
-    <h2>4. Third-Party Sharing</h2>
-    <p>We do not sell, rent, or share any data with third-party data brokers, advertising networks, or analytics platforms.</p>
+    <h2>4. Payment Processing</h2>
+    <p>Lifetime license purchases are processed externally by <strong>Stripe</strong>. DGF Labs does not collect, process, or store your payment card details inside the browser extension. Stripe's handling of payment data is governed by Stripe's Privacy Policy.</p>
 
-    <h2>5. Contact</h2>
-    <p>For questions regarding this policy or the Digital Governance Framework architecture, please contact us at support@dgflabs.com.</p>
+    <h2>5. Third-Party Sharing &amp; Data Sale</h2>
+    <p>We do not sell, rent, or transfer user data to third-party data brokers, advertising networks, or analytics platforms. We do not collect browsing history or build behavioral profiles.</p>
+
+    <h2>6. Contact</h2>
+    <p>For questions regarding this Privacy Policy or the Digital Governance Framework architecture, contact us at <a href="mailto:info@dgflabs.com">info@dgflabs.com</a>.</p>
 
 </body>
 </html>
